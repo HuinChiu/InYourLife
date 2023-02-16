@@ -1,0 +1,42 @@
+.topBarBox{
+    margin:auto;
+    width:50%;
+    position: relative;
+}
+.topBar{
+    display: flex;
+    justify-content: space-around;
+    margin:20px auto;
+    width: 100%;
+    height: 10%;
+    overflow: auto;
+
+}
+.topBar::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+.Circle{
+    width: 50px;
+    margin: 0px 5px;
+    
+}
+.Circle_userName{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow:hidden;
+    font-size: 10px;
+}
+.leftBtn{
+    position: absolute;
+    left: 5px;
+    top: 40%;
+    transform: (-50%,-50%);
+    color: #FFF;
+}
+.rightBtn{
+    position: absolute;
+    right: 5px;
+    top: 40%;
+    transform: (-50%,-50%);
+    color: #FFF;
+}

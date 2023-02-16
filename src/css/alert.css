@@ -1,0 +1,27 @@
+
+.alertBox{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position:absolute;
+    background-color: #FFF;
+    width:400px;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    display: none;
+}
+.alert__title{
+    font-size: 30px;
+    color: red;
+    padding: 10px;
+}
+/* .alert__closeBox{
+    position: absolute;
+    background-color: black;
+    z-index: 2;
+} */

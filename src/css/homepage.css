@@ -1,0 +1,18 @@
+.homeBox{
+    height: inherit;
+    display: flex;
+}
+.homeMain{
+    margin: auto;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:768px) {
+    .homeBox{
+        display: block;
+        justify-content: space-between;
+    }
+}
