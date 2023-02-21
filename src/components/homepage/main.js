@@ -1,4 +1,3 @@
-import React from "react";
 import TopBar from "./topBar";
 import Container from "./container";
 function Main(){

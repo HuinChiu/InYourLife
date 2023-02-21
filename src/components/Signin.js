@@ -1,5 +1,5 @@
-import React from "react";
 import { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import iphoneLogo from "../assets/image/iphoneLogo.png"
 import logotitle from "../assets/image/logoTitle.png";
@@ -44,33 +44,6 @@ const SignIn =()=>{
 
         })
     }
-
-    function signUp(){
-        console.log(account,passeord)
-
-        createUserWithEmailAndPassword(auth,account,passeord)
-        .then((cred)=>{
-            console.log("signUP")
-            console.log(cred.user)
-            
-        })
-        .catch((err)=>{
-            const errmsg=err.code;
-            console.log(errmsg)
-            if (errmsg=="auth/email-already-in-use"){
-                setAccountWarning("帳號已被註冊，請重新輸入");
-            }else if (errmsg=="auth/email-already-in-use"){
-                setAccountWarning("帳號輸入錯誤，請重新輸入");
-            }else if (errmsg=="auth/weak-password"){
-                setPasswordWarning("密碼至少六位數，請重新輸入");
-            }
-
-        })
-    }
-
-    function clickHandler(){
-        !signinState?setSigninSatate(true):setSigninSatate(false)
-    }
     useEffect(()=>{
         document.title="InYourLife-登入"
     })
@@ -97,7 +70,7 @@ const SignIn =()=>{
                             onChange={(e)=>{setPassword(e.target.value)}}></input>
                             <div className="signin__warning">{passwordWarning}</div>
                         </div>
-                        <div className=" signin__item signin__btn" onClick={signinState?signIn:signUp}>{signinState?"登入":"註冊"}</div>
+                        <div className=" signin__item signin__btn" onClick={signIn}>登入</div>
                         <div className="dividing">
                             <hr/>或<hr/>
                         </div>
@@ -109,7 +82,10 @@ const SignIn =()=>{
                     
                     <div className="signup">
                             <div>{signinState?"沒有帳號嗎？":"已註冊帳號"}</div>
-                            <div className="signup__Btn" onClick={clickHandler}>{signinState?"註冊":"登入"}
+                            <Link to="/signup">
+                            <div className="signup__Btn">註冊</div>
+                            </Link>
+
                     </div>
 
 
@@ -118,7 +94,6 @@ const SignIn =()=>{
                 </div>
 
         </div>
-    </div>
     )
 }
 

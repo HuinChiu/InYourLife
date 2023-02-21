@@ -1,13 +1,17 @@
-import React from "react";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
-import { onAuthStateChanged,signOut } from "firebase/auth";
-import NavBar from "./homepage/sidebar";
+import { onAuthStateChanged } from "firebase/auth";
+import SideBar from "./homepage/sidebar";
 import Main from "./homepage/main";
+import PersionPage from "./person";
+import CreateNewPage from "./createNewPage";
 
 function HomePage(){
     const navigate=useNavigate();
+
+    const[clickPerson,setCLickPerson]=useState(false)
+    const [clickCreateNewPage,setCreateNewPage]=useState(false)
 
     function checkSinIN(){
         onAuthStateChanged(auth,(user)=>{
@@ -17,34 +21,42 @@ function HomePage(){
             }
             else{
                 console.log("not login")
-                navigate("/sign")
+                navigate("/signin")
 
             }
         })
     };
     checkSinIN();
 
-
-    function signOUT(){
-      console.log("signout");
-      signOut(auth)
-      .then(()=>{
-        console.log("signout successful")
-      })
-      .catch((error)=>{
-        console.log(error.code)
-      })  
+    function clickPersonHandler(){
+        !clickPerson?setCLickPerson(true):null
     }
+    function clickCreatNewHandler(){
+        !clickCreateNewPage?setCreateNewPage(true):setCreateNewPage(false)
+    }
+
+    function clickBackHomePage(){
+        clickPerson?setCLickPerson(false):null
+        navigate("/")
+    }
+
+
+
 
 
     return(
         <>
         <div className="homeBox">
 
-            <NavBar></NavBar>
+            <SideBar clickPersonHandler={clickPersonHandler}
+                    clickCreatNewHandler={clickCreatNewHandler}
+                    clickBackHomePage={clickBackHomePage}
+
+            ></SideBar>
             <div className="homeMain">
-                <Main></Main>
+                {clickPerson?<PersionPage/>:<Main/>}
             </div>
+            {clickCreateNewPage?<CreateNewPage clickCreatNewHandler={clickCreatNewHandler}/>:null}
 
         </div>
         </>

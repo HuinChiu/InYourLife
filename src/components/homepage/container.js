@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {BiCircle} from "react-icons/bi"
 import {BiDotsHorizontalRounded} from "react-icons/bi"
 import {FaRegHeart,FaHeart} from "react-icons/fa"
@@ -12,12 +11,30 @@ import{BiChevronRightCircle} from "react-icons/bi"
 
 function Container(){
     //icon style
-    const style= {padding:'10px',width:"25px",height:"25px"}
-    const likestyle= {padding:'10px',width:"25px",height:"25px",color:"#e42c64"}
+    const style= {padding:'10px',width:"25px",height:"25px"};
+    const likestyle= {padding:'10px',width:"25px",height:"25px",color:"#e42c64"};
 
     //state
-    const [like,setLike]=useState(false)
-    const likeClick=()=>{!like?setLike(true):setLike(false)}
+    const [like,setLike]=useState(false);
+    const [showLike,setShowLike]=useState(false);
+    function likeClick(){
+        if (like == false){
+            setLike(true)
+            setShowLike(true)
+        }else{
+            setLike(false);
+            setShowLike(false)
+        }
+        !like?setLike(true):setLike(false)
+    }
+
+    useEffect(()=>{
+        setTimeout(function() {
+          setShowLike(false)
+             }, 2000);
+           },[])
+
+
         
     
     return(
@@ -32,7 +49,7 @@ function Container(){
                 
                 <div className="picture__main"></div>
                 <div className="picture__like">
-                    {like?<FaHeart style={{width:"30%",height:"30%",color:"#e42c64"}}/>:""}
+                    {showLike?<FaHeart style={{width:"30%",height:"30%",color:"#e42c64"}}/>:null}
 
                 </div>
                 <div className="picture__Rightbtn"><BiChevronRightCircle></BiChevronRightCircle></div>

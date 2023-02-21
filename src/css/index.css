@@ -9,3 +9,15 @@ html,body{
     height: inherit;
 
 }
+a:link{
+    text-decoration: none;
+    background-color: #fff;
+}
+a:active {
+    text-decoration:underline;
+    background-color:#fff;
+    }
+a:visited {
+    text-decoration:underline;
+    background-color:#fff;
+    }

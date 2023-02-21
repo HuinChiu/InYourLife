@@ -3,6 +3,7 @@
 .otherLogo__item{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .leftSideBar{
     width: 15%;
@@ -33,6 +34,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 90%;
+    position: relative;
 }
 /* lower logo */
 .hamburger{
@@ -54,6 +56,17 @@
         display:block;
         width: 100%;
     }
+}
+
+.signout{
+    position:absolute;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    bottom: 10%;
+    left:10%;
+    width: 75%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px #888888;;
 }
 
 /* @media (max-width:768px) {
