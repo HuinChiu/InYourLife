@@ -9,7 +9,7 @@ import{BiChevronLeftCircle} from "react-icons/bi"
 import{BiChevronRightCircle} from "react-icons/bi"
 
 
-function Container(){
+function Container({username,caption,images}){
     //icon style
     const style= {padding:'10px',width:"25px",height:"25px"};
     const likestyle= {padding:'10px',width:"25px",height:"25px",color:"#e42c64"};
@@ -41,13 +41,15 @@ function Container(){
         <>
             <div className="container">
             <div className="container__name">
-                <div className="container__name__title"><BiCircle/><div>hi_chiuchiu</div></div>
+                <div className="container__name__title"><BiCircle/><div>{username}</div></div>
                 <div><BiDotsHorizontalRounded/></div>
             </div>
             <div className="container__picture">
                 <div className="picture__Leftbtn"><BiChevronLeftCircle></BiChevronLeftCircle></div>
                 
-                <div className="picture__main"></div>
+                <div className="picture__main">
+                    <img className="post__main__picture"src={images}></img>
+                </div>
                 <div className="picture__like">
                     {showLike?<FaHeart style={{width:"30%",height:"30%",color:"#e42c64"}}/>:null}
 
@@ -76,8 +78,8 @@ function Container(){
                     <div className="like__count">和其他{600}人都說讚</div>
                 </div>
                 <div className="container__content">
-                    <div className="continaer__auth">Stacy</div>
-                    <div className="container__text">哇啦哇啦哇啦哇啦我是模擬發文內容</div>
+                    <div className="container__auth">{username}</div>
+                    <div className="container__text">{caption}</div>
                 </div>
                 <div className="container__msg">
                     <div className="container__msg__main">
@@ -98,61 +100,6 @@ function Container(){
                 </div>
             </div>
             <hr className="container__hr"></hr>
-        </div>
-        <div className="container">
-            <div className="container__name">
-                <div className="container__name__title"><BiCircle/><div>hi_chiuchiu</div></div>
-                <div><BiDotsHorizontalRounded/></div>
-            </div>
-            <div className="container__picture">
-                <div className="picture__Leftbtn"><BiChevronLeftCircle></BiChevronLeftCircle></div>
-                <div className="picture__main"></div>
-                <div className="picture__Rightbtn"><BiChevronRightCircle></BiChevronRightCircle></div>
-                <div className="picture__dot">
-                    <div className="dot"></div>
-                    <div className="dot"></div>
-                    <div className="dot"></div>
-                    <div className="dot"></div>
-                </div>
-            </div>
-            <div className="container__icon">
-                <div className="container__icon__left">
-                    <FaRegHeart style={style}/>
-                    <FiMessageSquare style={style}/>
-                    <FiSend style={style}/>
-                </div>
-                <div>
-                    <BiBookmark style={style}/>
-                </div>
-            </div>
-            <div className="container__main">
-                <div className="container__like">
-                    <div className="like_name">Stacy</div>
-                    <div className="like__count">和其他{600}人都說讚</div>
-                </div>
-                <div className="container__content">
-                    <div className="continaer__auth">Stacy</div>
-                    <div className="container__text">哇啦哇啦哇啦哇啦我是模擬發文內容</div>
-                </div>
-                <div className="container__msg">
-                    <div className="container__msg__main">
-                        <div className="container__msg__name">Una</div>
-                        <div className="container__msg__msg">我是留言內容</div>
-                    </div>
-                    <div className="container__msg__like"><FaRegHeart/></div>
-                </div>
-                <div className="container__msg">
-                    <div className="container__msg__main">
-                        <div className="container__msg__name">Una</div>
-                        <div className="container__msg__msg">我是留言內容</div>
-                    </div>
-                    <div className="container__msg__like"><FaRegHeart/></div>
-                </div>
-                <div className="container__msg__input">
-                    <input className="msg__input"type="text" placeholder="留言..."></input>
-                </div>
-            </div>
-
         </div>
         </>
         

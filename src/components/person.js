@@ -1,67 +1,14 @@
 import React from "react";
 import { useEffect,useState } from "react";
 import { db,auth,storage } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc,setDoc,getDocs,collection, updateDoc} from "firebase/firestore";
+import { doc,updateDoc} from "firebase/firestore";
 import { ref, uploadBytesResumable,getDownloadURL  } from "firebase/storage";
 import {BsGrid3X3} from "react-icons/bs"
 import {BiBookmark} from "react-icons/bi"
 import {FaHeart} from "react-icons/fa"
 import {FiMessageSquare} from "react-icons/fi"
-function PersionPage(){
-    const [fullName,setFullName]=useState("")
-    const [userName,setUsername]=useState("")
-    const [followers,setFollowers]=useState(0)
-    const [following,setFollowing]=useState(0)
-    const [memberId,setMemberId]=useState("")
-    const [personImg,setPersonImg]=useState("")
-    
-    //確認是否登入並獲取資料
-    async function checkSinIN(){
-        //獲取當前會員的uid
-        let uidData="";
-        await onAuthStateChanged(auth,(user)=>{
-            if(user){
-                const uid=user.uid;
-                uidData=uid;
-            }
-            else{
-                navigate("/signin");
+function PersionPage({fullName,userName,followers,following,memberId,personImg,setPersonImg}){
 
-            }
-        })
-        console.log("我是最後的uidData",uidData)  //印出獲取當前會員uid結果
-
-        //撈取資料庫內當前會員資料
-        const uidRef =collection(db,"user")
-        const snapshots = await getDocs(uidRef)
-        const docs =snapshots.docs.map((doc)=>{
-            const data=doc.data()
-            data.id=doc.id
-            
-            return data
-        })
-        //找出當前會員資料比對
-        for (let i of docs){
-            console.log(i.userId)
-            if (uidData === i.userId){
-                console.log("我是當前會員資料",i)
-                setUsername(i.username);
-                setFullName(i.fullName);
-                setFollowers(i.followers.length);
-                setFollowing(i.following.length);
-                setPersonImg(i.personImg)
-                setMemberId(i.id)
-            }
-        }
-
-
-    };
-
-    useEffect(()=>{
-        checkSinIN()
-    },[])
-    
     //點擊頭像上傳新的照片
     async function handleUpload(e){
         console.log("click upload")
@@ -78,10 +25,10 @@ function PersionPage(){
         const uploadTask=uploadBytesResumable(storageRef, file);
         
         uploadTask.on("state_changed",(snapshot)=>{
-            const progress=Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-            console.log(progress,"%")
+            // const progress=Math.round(
+            //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            //     );
+            // console.log(progress,"%")
 
         },(error)=>{console.log(error.message)},
         ()=>{//獲取上傳storage的url
@@ -89,6 +36,7 @@ function PersionPage(){
             .then(async (url)=>{
                 setPersonImg(url)
                 const washingtonRef = doc(db, "user", memberId);
+                //更新firestroe會員個人頭像url
                 await updateDoc(washingtonRef,{
                     personImg:url
                 }).then(()=>{
@@ -98,12 +46,6 @@ function PersionPage(){
             })
         })
     }
-    // //將個人照片url上傳至user資料庫
-    // async function updatePersonImg(){
-    //     console.log("更新direstore",memberId)
-
-
-    // }
 
 
 
@@ -130,7 +72,7 @@ function PersionPage(){
                         <div className="personInfomation__edit">編輯個人檔案</div>
                     </div>
                     <div className="personInfomation__item">
-                        <div className="personInfomation__item-num"><div className="post_num">51</div>貼文</div>
+                        <div className="personInfomation__item-num"><div className="post_num">0</div>貼文</div>
                         <div className="personInfomation__followers-num"><div className="post_num">{followers}</div>粉絲</div>
                         <div className="personInfomation__following-num"><div className="post_num">{following}</div>追蹤中</div>
                     </div>

@@ -1,0 +1,676 @@
+/*!*********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/index.css ***!
+  \*********************************************************************/
+html,body{
+    width: 100%;
+    height: 100%;
+    margin:0px;
+    padding: 0px;
+    background-color: antiquewhite;
+}
+.root{
+    height: inherit;
+
+}
+a:link{
+    text-decoration: none;
+    background-color: #fff;
+}
+a:active {
+    text-decoration:underline;
+    background-color:#fff;
+    }
+a:visited {
+    text-decoration:underline;
+    background-color:#fff;
+    }
+/*!********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/sign.css ***!
+  \********************************************************************/
+/* .main{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+} */
+.mainBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    /* align-content: center;  */
+}
+@media(max-width:768px){
+    .mainImg{
+        display: none;
+    }
+    .loginBox{
+        width: 80%;
+    }
+    hr{
+        width: 80px;
+    }
+}
+@media(max-width:360px){
+    .mainImg{
+        display: none;
+    }
+    .loginBox{
+        width: 80%;
+    }
+    hr{
+        width: 50px;
+    }
+}
+.mainImg{
+    width:25%;
+    height: auto;
+    margin:20px
+}
+.mainLogoImg{
+    width:100%;   
+    height: 100%;   
+    object-fit:cover;
+
+}
+.loginBox{
+    height:400px;
+    width: 80%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin: 20px 0px;   
+
+}
+.Title{
+    margin:20px;
+}
+.logotitle_img{
+    height:50px;
+}
+.signin__item{
+    cursor: pointer;
+    width: 90%;
+}
+#email{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#email::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#email:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+#password{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#password::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#password:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+#userName{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#userName::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#userName:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+#fullName{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#fullName::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#fullName:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+  
+.signin__btn{
+    width: 90%;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #41b6e6;
+    color:#FFF;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px 10px;
+}
+.signin__warning{
+    color: red;
+    margin-left:30px;
+    padding: 5px 10px;
+}
+
+.dividing{
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+hr{
+    height: 1px;
+    width: 150px;
+    border: 0px;
+    background-color: gray;
+    margin: 5px;
+}
+.useGooglesignin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.useGooglesignin__item{
+    padding: 10px;
+}
+.signup{
+    width: 80%;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:5px 0px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    padding:20px;
+}
+.signup__Btn{
+    color:#41b6e6;
+    margin-left: 10px;
+}
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/homepage.css ***!
+  \************************************************************************/
+.homeBox{
+    height: inherit;
+    display: flex;
+}
+.homeMain{
+    margin: auto;
+    width: 100%;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:768px) {
+    .homeBox{
+        display: block;
+        justify-content: space-between;
+    }
+}
+/*!***********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/sideBar.css ***!
+  \***********************************************************************/
+
+
+.otherLogo__item{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.leftSideBar{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    left: 0;
+    border-right: 1px solid lightgray;
+}
+/* toplogo */
+.mainLogo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.sideBarLogo{
+    width: 60%;
+    margin:0px 10px;
+}
+.sideBarLogo__ins{
+    display: none;
+}
+/* middle logo */
+.otherLogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    position: relative;
+}
+/* lower logo */
+.hamburger{
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width:1268px){
+    .leftSideBar{
+        width: 8%;
+    }
+    .otherLogo__item__title{
+        display: none;
+    }
+    .sideBarLogo{
+        display: none;
+    }
+    .sideBarLogo__ins{
+        display:block;
+        width: 100%;
+    }
+}
+
+.signout{
+    position:absolute;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    bottom: 10%;
+    left:10%;
+    width: 75%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px #888888;;
+}
+
+/* @media (max-width:768px) {
+    .leftSideBar{
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+
+    }
+    .mainLogo{
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .sideBarLogo__ins{
+        display: none;
+    }
+    .otherLogo{
+        flex-direction: row;
+        align-items: flex-end;
+        border-top: 1px solid lightgray;
+    }
+    .hamburger{
+        display: none;
+    }
+} */
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/topBar.css ***!
+  \**********************************************************************/
+.topBarBox{
+    margin:auto;
+    width:50%;
+    position: relative;
+}
+.topBar{
+    display: flex;
+    justify-content: space-around;
+    margin:20px auto;
+    width: 100%;
+    height: 10%;
+    overflow: auto;
+
+}
+.topBar::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+.Circle{
+    width: 50px;
+    margin: 0px 5px;
+    
+}
+.Circle_userName{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow:hidden;
+    font-size: 10px;
+}
+.leftBtn{
+    position: absolute;
+    left: 5px;
+    top: 40%;
+    transform: (-50%,-50%);
+    color: #FFF;
+}
+.rightBtn{
+    position: absolute;
+    right: 5px;
+    top: 40%;
+    transform: (-50%,-50%);
+    color: #FFF;
+}
+/*!*************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/container.css ***!
+  \*************************************************************************/
+.container{
+    margin: 0px auto;
+    width: 50%;
+}
+.container__name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container__name__title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* 照片區 */
+.container__picture{
+    border: 2px solid black;
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+.picture__like{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.picture__Leftbtn{
+    position: absolute;
+    top:50%;
+    left:10px;
+}
+.picture__Rightbtn{
+    position: absolute;
+    top:50%;
+    right:10px;
+}
+.picture__dot{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    bottom: 5px;
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 5px;
+    background-color: aqua;
+}
+.container__icon{
+    display: flex;
+    justify-content: space-between;
+
+}
+/* 愛心 傳送 收藏icon */
+.container__icon__left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container__like{
+    display: flex;
+    margin: 5px 0px;
+}
+/* 留言區 */
+.container__auth{
+    margin: 5px 0px;
+}
+.container__msg{
+    display: flex;
+    justify-content: space-between;
+}
+.container__msg__main{
+    display: flex;
+    margin: 5px 0px;
+
+}
+.container__msg__name{
+    margin-right: 10px;
+}
+.container__msg__input{
+    width: 100%;
+}
+.msg__input{
+    width: 100%;
+    outline: none;
+    border: 0px;
+    font-size: 16px;
+    margin: 5px 0px;
+}
+.container__hr{
+    width: 100%;
+    margin:15px 0px;
+}
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/person.css ***!
+  \**********************************************************************/
+.personDocument{
+    display: flex;
+    width: 70%;
+    margin: auto;
+}
+.personDocument__img{
+    margin:20px;
+}
+.person__Img{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+.person__Img__item{
+    width: 100%;
+    height: auto;
+}
+.personInfomation{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.personInfomation__item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px 20px;
+}
+.personInfomation__id-name{
+    font-size: 20px;
+}
+.personInfomation__edit{
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 5px 10px;
+    font-weight: 700;
+    margin: 0px 20px;
+    cursor: pointer;
+}
+.personInfomation__item-num{
+    display: flex;
+}
+.personInfomation__followers-num{
+    display: flex;
+}
+.personInfomation__following-num{
+    display: flex;
+}
+.personInfomation__name{
+    font-weight: 700;
+}
+.post_num{
+    font-weight: 700;
+}
+/* hr */
+.person__hr{
+    width: 70%;
+    margin: 50px auto 0px auto;
+    border: 0px;
+    color: lightgray;
+}
+/*person_select*/
+.personInfomation__select{
+    display: flex;
+    justify-content: center;
+}
+.personInfomation__select__item{
+    margin:0px 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.personInfomation__select__item:hover{
+    border-top: 1px solid black;
+}
+.personInfomation__select__item:active{
+    border-top: 1px solid black;
+}
+.select_icon{
+    margin:0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+/*post*/
+.person_post{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
+    margin: 20px auto;
+}
+.person_post__item{
+    width: 100%;
+    height: 200px;
+    background-color: black;
+
+}
+.item__status{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+}
+.item__status_heart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 20px;
+}
+.item__status_msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*!*****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/createNewPage.css ***!
+  \*****************************************************************************/
+.newPage__container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: rgba(0,0,0,0.6);
+}
+.newPage__container_close-btn{
+    position: absolute;
+    right:10px;
+    color: #FFF;
+    cursor: pointer;
+}
+.newPage__box{
+    margin:100px;
+    width: 50%;
+    height: 80%;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5%;
+}
+.newPage__box_title{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid lightgray;
+    font-weight: 700;
+    font-size: 20px;
+}
+.newPage__box_putImg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.newPage__box_putImg-icon{
+    width: 40%;
+    text-align: center;
+}
+.newPage__box_putImg-text{
+    font-size: 20px;
+    font-weight: 400;
+}
+.newPage__box_putImg-btn{
+    padding: 5px 10px;
+    margin:10px;
+    background-color: rgb(0, 191, 255);
+    color: #FFF;
+    border-radius: 5px;
+    font-weight: 700;
+}

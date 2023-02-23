@@ -5,6 +5,9 @@
     align-items: center;
     cursor: pointer;
 }
+.otherLogo__item:hover{
+    background-color: lightgray;
+}
 .leftSideBar{
     width: 15%;
     height: 100%;
@@ -20,6 +23,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .sideBarLogo{
     width: 60%;
@@ -35,6 +39,18 @@
     justify-content: space-between;
     height: 90%;
     position: relative;
+}
+.otherLogo__item__personImg{
+    width: 25px;
+    height: 25px;
+    padding: 20px;
+}
+.personImg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid black;
 }
 /* lower logo */
 .hamburger{

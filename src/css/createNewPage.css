@@ -15,12 +15,12 @@
 }
 .newPage__box{
     margin:100px;
-    width: 50%;
+    width: 70%;
     height: 80%;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
-    border-radius: 5%;
+    border-radius: 10px;
 }
 .newPage__box_title{
     width: 100%;
@@ -28,7 +28,33 @@
     padding: 10px 0px;
     border-bottom: 1px solid lightgray;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
+}
+.newPage__box_title-group{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid lightgray;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.back{
+    padding: 0px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.next{
+    padding: 0px 10px;
+    cursor: pointer;
+    color: #50C1E9;
+}
+.next:hover{
+    color: black;
 }
 .newPage__box_putImg{
     width: 100%;
@@ -53,4 +79,60 @@
     color: #FFF;
     border-radius: 5px;
     font-weight: 700;
+    cursor: pointer;
+}
+/* 上傳 */
+#uploadPostImg{
+    display: none;
+}
+.preViewImg{
+    width: 60%;
+    height: 100%;
+    background-size:cover;
+    border-radius: 0 0 0 10px;
+    background-position: center;
+}
+.perviewImg__item{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio:auto; /* ⏹ a perfect square */
+
+}
+/* 建立貼文box */
+.newPage__newPost{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.perViewPost{
+    width: 40%;
+    height: 100%;
+}
+.perViewPost__member{
+    display: flex;
+    margin: 5px 10px;
+}
+.perViewPost__member__img{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-size:cover;
+    border-radius: 50%;
+    background-position: center;
+    border: 1px solid black;
+}
+.perViewPost__member__username{
+    margin: auto 5px;
+}
+.perViewPost__input{
+    outline-style: none ;
+    border: 0px;
+    border-bottom: 1px solid lightgray;
+    padding: 20px;
+    font-size: 16px;
+    width: 85%;
+    height: 50%;
+    resize: none
 }

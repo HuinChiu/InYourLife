@@ -16,10 +16,8 @@ const SignUp =()=>{
     const [passwordWarning,setPasswordWarning]=useState("");
     const [usernameWarning,setUsernameWarning]=useState("")
     const navigate=useNavigate();
-
+    //註冊
     function signUp(){
-        console.log(account,passeord)
-
         createUserWithEmailAndPassword(auth,account,passeord)
         .then((cred)=>{
             console.log("signUP")
