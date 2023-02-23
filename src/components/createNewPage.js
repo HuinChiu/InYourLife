@@ -1,32 +1,40 @@
 import { useState,useEffect,useRef } from "react";
 import { db,storage } from "../../firebase";
+import { ref,uploadBytesResumable,getDownloadURL } from "firebase/storage";
+import { addDoc,collection, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import {FaPhotoVideo} from "react-icons/fa"
 import {CgClose} from "react-icons/cg"
 import {IoMdArrowRoundBack} from "react-icons/io"
 
-function CreateNewPage({clickCreatNewHandler,userName,personImg}){
+function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
     //確認是否下一步
     const [nextStep,setNextStep]=useState(false)
     //上傳相片
-    const [images,setImages]=useState("")
-    const [imageURLs,setImageURLs]=useState([])
+    const [imageURLs,setImageURLs]=useState([]) //將本地端url存起來
     const [storageURL, setStorageURL]=useState("")
-    const [context,setContext]=useState("")
+    const [context,setContext]=useState("")//將輸入caption存起來
+    const [file, setFile] = useState("");
+
+    const navigate=useNavigate()
 
 
-    const handleChange=(e)=>{
+    const handleChange=async (e)=>{
         setNextStep(true)
-        const files =e.target.files
-        const imagesList=[]
-        for (let i=0;i<files.length;i++){
-            imagesList.push(URL.createObjectURL(e.target.files[i]))
-        }
-        setImageURLs(imagesList)
-        //預覽圖片
+        const file =e.target.files[0]
+        setFile(e.target.files[0])
+        if (!file) return;
+        //預覽圖片，獲取本地端imageURL
+        const localImgUrl=URL.createObjectURL(e.target.files[0])
+        //將預覽圖片放進imageURL顯示在img上
+        setImageURLs(localImgUrl)
+        console.log("我是Images",localImgUrl)
     }
-
-    function updatePost(){
-        //上傳照片至storage
+    console.log("我是外面的file",file)
+    //上傳照片至storage
+    function uploadImg(){
+        console.log(context)
+        console.log(file)
         const storageRef=ref(storage,`/post/${file.name}`);
         const uploadTask=uploadBytesResumable(storageRef, file);
         
@@ -40,29 +48,27 @@ function CreateNewPage({clickCreatNewHandler,userName,personImg}){
         ()=>{//獲取上傳storage的url
             getDownloadURL(uploadTask.snapshot.ref)
             .then(async (url)=>{
-                const data={
-                    dataCreates:serverTimestamp(),
+                console.log("我是storagrURL",url)
+                //將貼文新增至firestroe posts
+                const docRef = addDoc(collection(db, "posts"),{
+                    timestamp:serverTimestamp(),
+                    username:memberData.username,
+                    images:url,
                     caption:context,
-                    followers:[],
-                    images:[url],
-                    likes:[],
-                    message:[],
-                    username:userName
-                }
-
+                }).then((docRef)=>{
+                    console.log("上傳完畢",docRef.id)
+                });
             })
+        clickCreatNewHandler();
         })
-
-
-        // console.log(data)
-        // addDoc(collection(db, "pots"), data).then((data)=>{
-        //     console.log(data); 
-        // });
     }
+
+    console.log(personImg)
 
     return(
         <>
         {nextStep?
+        // 建立新貼文輸入框
         <div className="newPage__container">
             <div className="newPage__container_close-btn" onClick={clickCreatNewHandler}>
                 <CgClose style={{width:"50px",height:"50px"}}></CgClose>
@@ -71,19 +77,15 @@ function CreateNewPage({clickCreatNewHandler,userName,personImg}){
                 <div className="newPage__box_title-group">
                     <div className="back" onClick={()=>{setNextStep(false)}}><IoMdArrowRoundBack style={{width:"30px",height:"30px"}}/></div>
                     <div >建立新貼文</div>
-                    <div className="next">分享</div>
+                    <div className="next" onClick={uploadImg}>分享</div>
                 </div>
-
                 <div className="newPage__newPost">
-                    <div className="preViewImg" style={{backgroundImage:`url(${imageURLs[0]})`}}>
-                        {/* {imageURLs.map((img,index)=>{ 
-                            return <img className="perviewImg__item" key={index} src={img}></img>
-                            })} */}
+                    <div className="preViewImg" style={{backgroundImage:`url(${imageURLs})`}}>
                     </div>
                     <div className="perViewPost">
                         <div className="perViewPost__member">
                             <div className="perViewPost__member__img" style={{backgroundImage:`url(${personImg})`}}></div>
-                            <div className="perViewPost__member__username">{userName}</div>
+                            <div className="perViewPost__member__username">{memberData.userName}</div>
                         </div>
                         <textarea className="perViewPost__input"type="text"
                         placeholder="撰寫說明文字"
@@ -96,6 +98,7 @@ function CreateNewPage({clickCreatNewHandler,userName,personImg}){
             </div>
         </div>
         :
+        //建立新貼文框
         <div className="newPage__container">
         <div className="newPage__container_close-btn" onClick={clickCreatNewHandler}>
             <CgClose style={{width:"50px",height:"50px"}}></CgClose>

@@ -251,6 +251,9 @@ hr{
     align-items: center;
     cursor: pointer;
 }
+.otherLogo__item:hover{
+    background-color: lightgray;
+}
 .leftSideBar{
     width: 15%;
     height: 100%;
@@ -282,6 +285,18 @@ hr{
     justify-content: space-between;
     height: 90%;
     position: relative;
+}
+.otherLogo__item__personImg{
+    width: 25px;
+    height: 25px;
+    padding: 20px;
+}
+.personImg{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid black;
 }
 /* lower logo */
 .hamburger{
@@ -390,6 +405,7 @@ hr{
 .container{
     margin: 0px auto;
     width: 50%;
+
 }
 .container__name{
     display: flex;
@@ -397,19 +413,44 @@ hr{
     align-items: center;
 }
 .container__name__title{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    font-weight: 700;
+    justify-content: space-between;
+    margin: 5px;
 }
 /* 照片區 */
+.container__name__personImagebox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.container__name__personImage{
+    width:30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.container__name__username{
+    margin: 5px;
+}
 .container__picture{
     border: 2px solid black;
-    width: 100%;
-    height: 300px;
+    max-width: 100%;
     position: relative;
+}
+.post__main__picture{
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    display: block;
 }
 .picture__like{
     position: absolute;
+    top:0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -460,6 +501,7 @@ hr{
 /* 留言區 */
 .container__auth{
     margin: 5px 0px;
+    font-weight: 700;
 }
 .container__msg{
     display: flex;
@@ -635,12 +677,12 @@ hr{
 }
 .newPage__box{
     margin:100px;
-    width: 50%;
+    width: 70%;
     height: 80%;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
-    border-radius: 5%;
+    border-radius: 10px;
 }
 .newPage__box_title{
     width: 100%;
@@ -648,7 +690,33 @@ hr{
     padding: 10px 0px;
     border-bottom: 1px solid lightgray;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
+}
+.newPage__box_title-group{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid lightgray;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.back{
+    padding: 0px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.next{
+    padding: 0px 10px;
+    cursor: pointer;
+    color: #50C1E9;
+}
+.next:hover{
+    color: black;
 }
 .newPage__box_putImg{
     width: 100%;
@@ -673,4 +741,60 @@ hr{
     color: #FFF;
     border-radius: 5px;
     font-weight: 700;
+    cursor: pointer;
+}
+/* 上傳 */
+#uploadPostImg{
+    display: none;
+}
+.preViewImg{
+    width: 60%;
+    height: 100%;
+    background-size:cover;
+    border-radius: 0 0 0 10px;
+    background-position: center;
+}
+.perviewImg__item{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio:auto; /* ⏹ a perfect square */
+
+}
+/* 建立貼文box */
+.newPage__newPost{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.perViewPost{
+    width: 40%;
+    height: 100%;
+}
+.perViewPost__member{
+    display: flex;
+    margin: 5px 10px;
+}
+.perViewPost__member__img{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-size:cover;
+    border-radius: 50%;
+    background-position: center;
+    border: 1px solid black;
+}
+.perViewPost__member__username{
+    margin: auto 5px;
+}
+.perViewPost__input{
+    outline-style: none ;
+    border: 0px;
+    border-bottom: 1px solid lightgray;
+    padding: 20px;
+    font-size: 16px;
+    width: 85%;
+    height: 50%;
+    resize: none
 }

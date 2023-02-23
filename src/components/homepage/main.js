@@ -1,17 +1,16 @@
 import { useState,useEffect } from "react";
 import { db } from "../../../firebase";
-import { collection,getDocs,onSnapshot } from "firebase/firestore";
+import { collection,getDocs,onSnapshot, orderBy, query, Timestamp } from "firebase/firestore";
 import TopBar from "./topBar";
 import Container from "./container";
 import { FaPooStorm } from "react-icons/fa";
-function Main(){
+function Main({memberData}){
     const [posts,setPosts]=useState([])
 
 
     useEffect(()=>{
-        onSnapshot(
-            collection(db, "posts"), 
-            (querySnapshot) => { 
+        const q =query(collection(db, "posts"),orderBy("timestamp","desc"))
+        onSnapshot(q, (querySnapshot) => { 
                 const postsData = []; 
                 querySnapshot.forEach((doc) => {
                     postsData.push(
@@ -20,6 +19,7 @@ function Main(){
                         });
                     }); 
                 setPosts(postsData); 
+                console.log("我是post",posts)
             });},[])
 
     return(
@@ -31,6 +31,7 @@ function Main(){
                     username={post.username} 
                     caption={post.caption} 
                     images={post.images}
+                    personImg={memberData.personImg}
                     >
                     </Container>
             ))}

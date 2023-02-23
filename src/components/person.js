@@ -1,14 +1,14 @@
 import React from "react";
 import { useEffect,useState } from "react";
 import { db,auth,storage } from "../../firebase";
-import { doc,updateDoc} from "firebase/firestore";
+import { doc,setDoc,getDocs,collection, updateDoc} from "firebase/firestore";
 import { ref, uploadBytesResumable,getDownloadURL  } from "firebase/storage";
 import {BsGrid3X3} from "react-icons/bs"
 import {BiBookmark} from "react-icons/bi"
 import {FaHeart} from "react-icons/fa"
 import {FiMessageSquare} from "react-icons/fi"
-function PersionPage({fullName,userName,followers,following,memberId,personImg,setPersonImg}){
-
+function PersionPage({memberData,personImg,setPersonImg,memberId}){
+    // fullName,userName,followers,following,memberId,personImg,setPersonImg
     //點擊頭像上傳新的照片
     async function handleUpload(e){
         console.log("click upload")
@@ -25,10 +25,10 @@ function PersionPage({fullName,userName,followers,following,memberId,personImg,s
         const uploadTask=uploadBytesResumable(storageRef, file);
         
         uploadTask.on("state_changed",(snapshot)=>{
-            // const progress=Math.round(
-            //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            //     );
-            // console.log(progress,"%")
+            const progress=Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+            console.log(progress,"%")
 
         },(error)=>{console.log(error.message)},
         ()=>{//獲取上傳storage的url
@@ -68,16 +68,16 @@ function PersionPage({fullName,userName,followers,following,memberId,personImg,s
                 </div>
                 <div className="personInfomation">
                     <div className="personInfomation__item">
-                        <div className="personInfomation__id-name">{userName}</div>
+                        <div className="personInfomation__id-name">{memberData.username}</div>
                         <div className="personInfomation__edit">編輯個人檔案</div>
                     </div>
                     <div className="personInfomation__item">
                         <div className="personInfomation__item-num"><div className="post_num">0</div>貼文</div>
-                        <div className="personInfomation__followers-num"><div className="post_num">{followers}</div>粉絲</div>
-                        <div className="personInfomation__following-num"><div className="post_num">{following}</div>追蹤中</div>
+                        <div className="personInfomation__followers-num"><div className="post_num">{memberData.followers.length}</div>粉絲</div>
+                        <div className="personInfomation__following-num"><div className="post_num">{memberData.following.length}</div>追蹤中</div>
                     </div>
                     <div className="personInfomation__item">
-                        <div className="personInfomation__name">{fullName}</div>
+                        <div className="personInfomation__name">{memberData.fullName}</div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
-import {BiCircle} from "react-icons/bi"
+import {doc,deleteDoc} from "firebase/firestore"
+import { db } from "../../../firebase";
 import {BiDotsHorizontalRounded} from "react-icons/bi"
 import {FaRegHeart,FaHeart} from "react-icons/fa"
 import {FiMessageSquare} from "react-icons/fi"
@@ -9,7 +10,7 @@ import{BiChevronLeftCircle} from "react-icons/bi"
 import{BiChevronRightCircle} from "react-icons/bi"
 
 
-function Container({username,caption,images}){
+function Container({username,caption,images,personImg}){
     //icon style
     const style= {padding:'10px',width:"25px",height:"25px"};
     const likestyle= {padding:'10px',width:"25px",height:"25px",color:"#e42c64"};
@@ -17,33 +18,39 @@ function Container({username,caption,images}){
     //state
     const [like,setLike]=useState(false);
     const [showLike,setShowLike]=useState(false);
+
     function likeClick(){
         if (like == false){
             setLike(true)
             setShowLike(true)
+            setTimeout(function() {
+                setShowLike(false)
+                   }, 1000)
         }else{
             setLike(false);
             setShowLike(false)
         }
-        !like?setLike(true):setLike(false)
     }
 
-    useEffect(()=>{
-        setTimeout(function() {
-          setShowLike(false)
-             }, 2000);
-           },[])
+    function deletePost(){
+
+    }
 
 
-        
     
     return(
         <>
             <div className="container">
-            <div className="container__name">
-                <div className="container__name__title"><BiCircle/><div>{username}</div></div>
-                <div><BiDotsHorizontalRounded/></div>
-            </div>
+                <div className="container__name">
+                    <div className="container__name__title">
+                        <div className="container__name__personImagebox">
+                            <img className="container__name__personImage" src={personImg}></img>
+                            <div className="container__name__username">{username}</div>
+                        </div>
+
+                        <div><BiDotsHorizontalRounded/></div>
+                    </div>
+                </div>
             <div className="container__picture">
                 <div className="picture__Leftbtn"><BiChevronLeftCircle></BiChevronLeftCircle></div>
                 
@@ -52,7 +59,6 @@ function Container({username,caption,images}){
                 </div>
                 <div className="picture__like">
                     {showLike?<FaHeart style={{width:"30%",height:"30%",color:"#e42c64"}}/>:null}
-
                 </div>
                 <div className="picture__Rightbtn"><BiChevronRightCircle></BiChevronRightCircle></div>
                 <div className="picture__dot">
@@ -64,7 +70,9 @@ function Container({username,caption,images}){
             </div>
             <div className="container__icon">
                 <div className="container__icon__left">
-                    <div onClick={likeClick}>{like?<FaHeart style={likestyle} />:<FaRegHeart style={style}/>}</div>
+                    <div onClick={likeClick}>
+                        {like?<FaHeart style={likestyle}/>:<FaRegHeart style={style}/>}
+                    </div>
                     <div><FiMessageSquare style={style}/></div>
                     <div><FiSend style={style}/></div>
                 </div>

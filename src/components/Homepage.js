@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
+import { auth,storage } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc,setDoc,getDocs,collection, updateDoc} from "firebase/firestore";
 import { db } from "../../firebase";
@@ -15,6 +15,7 @@ function HomePage(){
     const[clickPerson,setCLickPerson]=useState(false)
     const [clickCreateNewPage,setCreateNewPage]=useState(false)
 
+    const [memberData,setMemberData]=useState({})
     const [fullName,setFullName]=useState("")
     const [userName,setUsername]=useState("")
     const [followers,setFollowers]=useState(0)
@@ -30,10 +31,11 @@ function HomePage(){
             if(user){
                 const uid=user.uid;
                 uidData=uid;
+                console.log("我是獲取當前會員",uidData)
             }
             else{
+                console.log("未登入");
                 navigate("/signin");
-
             }
         })
         console.log("我是最後的uidData",uidData)  //印出獲取當前會員uid結果
@@ -48,9 +50,10 @@ function HomePage(){
         })
         //找出當前會員資料比對
         for (let i of docs){
-            console.log(i.userId)
+            console.log("我是會員資料比對",i.userId)
             if (uidData === i.userId){
                 console.log("我是當前會員資料",i)
+                setMemberData(i)
                 setUsername(i.username);
                 setFullName(i.fullName);
                 setFollowers(i.followers.length);
@@ -92,23 +95,24 @@ function HomePage(){
             <SideBar clickPersonHandler={clickPersonHandler}
                     clickCreatNewHandler={clickCreatNewHandler}
                     clickBackHomePage={clickBackHomePage}
+                    memberData={memberData}
                     personImg={personImg}
 
             ></SideBar>
             <div className="homeMain">
                 {clickPerson?<PersionPage 
-                fullName={fullName}
-                userName={userName}
-                followers={followers}
-                following={following}
-                memberId={memberId}
+                memberData={memberData}
                 personImg={personImg}
                 setPersonImg={setPersonImg}
-                />:<Main/>}
+                memberId={memberId}
+                />:
+                <Main
+                memberData={memberData}
+                />}
             </div>
             {clickCreateNewPage?<CreateNewPage 
             clickCreatNewHandler={clickCreatNewHandler}
-            userName={userName}
+            memberData={memberData}
             personImg={personImg}
             />:null}
 

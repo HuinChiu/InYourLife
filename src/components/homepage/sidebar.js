@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import {BsInstagram }from "react-icons/bs";
 import {AiFillHome} from "react-icons/ai"
@@ -12,10 +12,11 @@ import {RxHamburgerMenu} from 'react-icons/rx'
 import logotitle from "../../assets/image/logoTitle.png";
 import { signOut } from "firebase/auth";
 
-function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,personImg}){
+function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memberData,personImg}){
     const style= {padding:'20px',width:"25px",height:"25px"}
     const [openMore,setOpenMore]=useState(false)
     //登出後導回首頁
+
     const navigate=useNavigate()
 
 
@@ -24,9 +25,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,pers
       console.log("signout");
       signOut(auth)
       .then(()=>{
-        console.log("signout successful")
-        navigate("/")
-
+        navigate("/signin");
       })
       .catch((error)=>{
         console.log(error.code)

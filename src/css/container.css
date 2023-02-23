@@ -9,12 +9,30 @@
     align-items: center;
 }
 .container__name__title{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     font-weight: 700;
+    justify-content: space-between;
+    margin: 5px;
 }
 /* 照片區 */
+.container__name__personImagebox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.container__name__personImage{
+    width:30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.container__name__username{
+    margin: 5px;
+}
 .container__picture{
     border: 2px solid black;
     max-width: 100%;
@@ -22,11 +40,13 @@
 }
 .post__main__picture{
     width: 100%;
+    height: 500px;
     object-fit: contain;
     display: block;
 }
 .picture__like{
     position: absolute;
+    top:0;
     width: 100%;
     height: 100%;
     display: flex;
