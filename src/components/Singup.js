@@ -3,7 +3,7 @@ import { useNavigate,Link } from "react-router-dom";
 import iphoneLogo from "../assets/image/iphoneLogo.png"
 import logotitle from "../assets/image/logoTitle.png";
 import { auth,db } from "../../firebase";
-import { collection,addDoc, serverTimestamp } from "firebase/firestore";
+import { collection,addDoc, serverTimestamp,query,where,onSnapshot } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp =()=>{
@@ -18,6 +18,15 @@ const SignUp =()=>{
     const navigate=useNavigate();
     //註冊
     function signUp(){
+        setUsernameWarning("")
+        const uidRef =query(collection(db,"user"),where("username","==",username))
+        onSnapshot(uidRef,(snapshots)=>{
+            if(snapshots.docs.length>0){
+                setUsernameWarning("使用者名稱已存在，請重新輸入")
+            }
+        })
+
+
         createUserWithEmailAndPassword(auth,account,passeord)
         .then((cred)=>{
             console.log("signUP")
@@ -31,7 +40,7 @@ const SignUp =()=>{
                 fullName:fullName,
                 userId:uid,
                 username:username,
-                personImg:""
+                personImg:"https://firebasestorage.googleapis.com/v0/b/inyourlife-716bb.appspot.com/o/logo2.png?alt=media&token=ded852ae-30df-49ba-827f-6db4dcea6376"
             }
             console.log(data)
             addDoc(collection(db, "user"), data).then((data)=>{

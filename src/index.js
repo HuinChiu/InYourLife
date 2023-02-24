@@ -8,6 +8,7 @@ import "./css/topBar.css"
 import "./css/container.css"
 import "./css/person.css"
 import "./css/createNewPage.css"
+import "./css/setting.css"
 import { BrowserRouter } from "react-router-dom";
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { auth } from "../../../firebase";
 import {BsInstagram }from "react-icons/bs";
 import {AiFillHome} from "react-icons/ai"

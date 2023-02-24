@@ -1,28 +1,31 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { auth,storage } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc,setDoc,getDocs,collection, updateDoc} from "firebase/firestore";
+import { doc,setDoc,getDocs,collection, updateDoc,onSnapshot,where,query} from "firebase/firestore";
 import { db } from "../../firebase";
 import SideBar from "./homepage/sidebar";
 import Main from "./homepage/main";
 import PersionPage from "./person";
 import CreateNewPage from "./createNewPage";
+import Setting from "./setting";
 
 function HomePage(){
     const navigate=useNavigate();
 
-    const[clickPerson,setCLickPerson]=useState(false)
-    const [clickCreateNewPage,setCreateNewPage]=useState(false)
+    const[clickPerson,setCLickPerson]=useState(false);
+    const [clickCreateNewPage,setCreateNewPage]=useState(false);
 
-    const [memberData,setMemberData]=useState({})
-    const [fullName,setFullName]=useState("")
-    const [userName,setUsername]=useState("")
-    const [followers,setFollowers]=useState(0)
-    const [following,setFollowing]=useState(0)
-    const [memberId,setMemberId]=useState("")
-    const [personImg,setPersonImg]=useState("")
+    const [memberData,setMemberData]=useState({});
+    const [fullName,setFullName]=useState("");
+    const [userName,setUsername]=useState("");
+    const [followers,setFollowers]=useState(0);
+    const [following,setFollowing]=useState(0);
+    const [memberId,setMemberId]=useState("");
+    const [personImg,setPersonImg]=useState("");
+    const [setting,setSetting]=useState(false);
     
+
     //確認是否登入並獲取資料
     async function checkSinIN(){
         //獲取當前會員的uid
@@ -32,6 +35,22 @@ function HomePage(){
                 const uid=user.uid;
                 uidData=uid;
                 console.log("我是獲取當前會員",uidData)
+                //撈取資料庫內當前會員資料
+                const uidRef =query(collection(db,"user"),where("userId","==",uidData))
+                onSnapshot(uidRef,(snapshots)=>{
+                    snapshots.docs.forEach( a => {
+                        console.log(a.id)
+                        const user=a.data();
+                        console.log("我是查詢到的會員資料",user)
+                        setMemberData(user)
+                        setUsername(user.username);
+                        setFullName(user.fullName);
+                        setFollowers(user.followers.length);
+                        setFollowing(user.following.length);
+                        setPersonImg(user.personImg)
+                        setMemberId(a.id)
+                    })
+                })
             }
             else{
                 console.log("未登入");
@@ -39,35 +58,12 @@ function HomePage(){
             }
         })
         console.log("我是最後的uidData",uidData)  //印出獲取當前會員uid結果
-
-        //撈取資料庫內當前會員資料
-        const uidRef =collection(db,"user")
-        const snapshots = await getDocs(uidRef)
-        const docs =snapshots.docs.map((doc)=>{
-            const data=doc.data()
-            data.id=doc.id
-            return data
-        })
-        //找出當前會員資料比對
-        for (let i of docs){
-            console.log("我是會員資料比對",i.userId)
-            if (uidData === i.userId){
-                console.log("我是當前會員資料",i)
-                setMemberData(i)
-                setUsername(i.username);
-                setFullName(i.fullName);
-                setFollowers(i.followers.length);
-                setFollowing(i.following.length);
-                setPersonImg(i.personImg)
-                setMemberId(i.id)
-            }
-        }
-
+        console.log(memberId)
 
     };
 
     useEffect(()=>{
-        checkSinIN()
+        checkSinIN();
     },[])
 
     //確認是否案個人網頁，true跳轉至個人頁面
@@ -82,6 +78,10 @@ function HomePage(){
     function clickBackHomePage(){
         clickPerson?setCLickPerson(false):null
         navigate("/")
+    }
+    function clickSetting(){
+        !setting?setSetting(true):setSetting(false)
+        console.log("clickSeeting")
     }
 
 
@@ -100,11 +100,18 @@ function HomePage(){
 
             ></SideBar>
             <div className="homeMain">
+                {setting?
+                <Setting memberData={memberData}
+                clickSetting={clickSetting}
+                memberId={memberId}
+                />:
+                null}
                 {clickPerson?<PersionPage 
                 memberData={memberData}
                 personImg={personImg}
                 setPersonImg={setPersonImg}
                 memberId={memberId}
+                clickSetting={clickSetting}
                 />:
                 <Main
                 memberData={memberData}
@@ -121,4 +128,4 @@ function HomePage(){
     )
 }
 
-export default HomePage;
+export {HomePage};
