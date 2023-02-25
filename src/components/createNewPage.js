@@ -85,7 +85,7 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
                     <div className="perViewPost">
                         <div className="perViewPost__member">
                             <div className="perViewPost__member__img" style={{backgroundImage:`url(${personImg})`}}></div>
-                            <div className="perViewPost__member__username">{memberData.userName}</div>
+                            <div className="perViewPost__member__username">{memberData.username}</div>
                         </div>
                         <textarea className="perViewPost__input"type="text"
                         placeholder="撰寫說明文字"

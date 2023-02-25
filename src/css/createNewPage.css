@@ -6,6 +6,7 @@
     height: 100%;
     z-index: 5;
     background-color: rgba(0,0,0,0.6);
+    top: 0;
 }
 .newPage__container_close-btn{
     position: absolute;
@@ -135,4 +136,14 @@
     width: 85%;
     height: 50%;
     resize: none
+}
+@media (max-width:768px) {
+    .newPage__box{
+        width: 80%;
+        margin: auto;
+        height: 50%;
+    }
+}
+@media (max-width:360px) {
+
 }

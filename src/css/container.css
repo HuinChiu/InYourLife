@@ -1,7 +1,6 @@
 .container{
     margin: 0px auto;
     width: 50%;
-
 }
 .container__name{
     display: flex;
@@ -124,4 +123,38 @@
 .container__hr{
     width: 100%;
     margin:15px 0px;
+}
+@media (max-width:1200px) {
+    .container{
+        margin: 0px auto;
+        width: 60%;
+    }
+
+}
+
+@media (max-width:768px) {
+    .sideBarLogo{
+        padding: 10px 5px;
+    }
+    .post__main__picture{
+        height: 400px;
+    }    
+    .container{
+        width: 90%;
+    }
+    .otherLogo__item{
+        padding: 10px;
+    }
+}
+
+@media (max-width:412px) {
+    .post__main__picture{
+        height: 300px;
+    }    
+    .container{
+        width: 100%;
+    }
+    .container__main{
+        margin: 10px;
+    }
 }

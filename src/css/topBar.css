@@ -40,3 +40,18 @@
     transform: (-50%,-50%);
     color: #FFF;
 }
+@media (max-width:1200px) {
+    .topBarBox{
+        width: 60%;
+    }
+
+}
+@media (max-width:768px) {
+    .topBarBox{
+        margin-top: 50px;
+        width: 90%;
+    }
+}
+@media (max-width:410px) {
+
+}

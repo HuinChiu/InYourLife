@@ -4,9 +4,13 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin: 30px;
 }
 .otherLogo__item:hover{
     background-color: lightgray;
+}
+.otherLogo__item__title{
+    margin: 0px 15px;
 }
 .leftSideBar{
     width: 15%;
@@ -16,18 +20,20 @@
     justify-content: space-around;
     position: fixed;
     left: 0;
+    z-index: 5;
     border-right: 1px solid lightgray;
 }
 /* toplogo */
 .mainLogo{
-    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 .sideBarLogo{
     width: 60%;
     margin:0px 10px;
+    align-items: center;
 }
 .sideBarLogo__ins{
     display: none;
@@ -43,7 +49,6 @@
 .otherLogo__item__personImg{
     width: 25px;
     height: 25px;
-    padding: 20px;
 }
 .personImg{
     display: block;
@@ -57,8 +62,12 @@
     display: flex;
     flex-direction: column;
 }
+/*padsideBae*/
+.padSideBar{
+    display: none;
+}
 
-@media(max-width:1268px){
+@media(max-width:1200px){
     .leftSideBar{
         width: 8%;
     }
@@ -86,26 +95,71 @@
     box-shadow: 1px 1px 8px #888888;;
 }
 
-/* @media (max-width:768px) {
+@media (max-width:768px) {
     .leftSideBar{
-        width: 100%;
-        flex-direction: column;
+        display: none;
+        /* width: 100%; */
         justify-content: space-between;
+    }
+    .padSideBar{
+        display: block;
 
     }
     .mainLogo{
-        justify-content: flex-start;
-        align-items: flex-start;
+        position: fixed;
+        z-index: 5;
+        display: block;
+        width: 95%;
+        background-color: #FFF;
+        border-bottom: 1px solid lightgray;
+    }
+    .sideBarLogo{
+        display: block;
+        width: 150px;
     }
     .sideBarLogo__ins{
         display: none;
     }
+    .otherLogo__group{
+        position: fixed;
+        z-index: 5;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #FFF;
+        border-top: 1px solid lightgray;
+    }
+    .otherLogo__item{
+        margin: 10px;
+        padding: 0px;
+    }
     .otherLogo{
+        width: 393px;
+        position: absolute;
+        bottom: 0;
+        height: auto;
         flex-direction: row;
         align-items: flex-end;
         border-top: 1px solid lightgray;
+        background-color: #FFF;
     }
     .hamburger{
         display: none;
     }
-} */
+}
+@media (max-width:412px) {
+    .mainLogo{
+        padding: 0px;
+    }
+    .otherLogo__item{
+        padding: 0px;
+    }
+    .sideBarLogo{
+        display: block;
+        width: 100px;
+        padding: 5px;
+    }
+    .otherLogo__group{
+    }
+}

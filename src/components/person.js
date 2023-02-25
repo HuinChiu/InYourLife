@@ -8,6 +8,7 @@ import {BsGrid3X3} from "react-icons/bs"
 import {BiBookmark} from "react-icons/bi"
 import {FaHeart} from "react-icons/fa"
 import {FiMessageSquare} from "react-icons/fi"
+import { AiFillSetting} from "react-icons/ai"
 function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     // fullName,userName,followers,following,memberId,personImg,setPersonImg
     // const {username} =useParams();
@@ -70,6 +71,9 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                 <div className="personInfomation__item">
                     <div className="personInfomation__id-name">{memberData.username}</div>
                     <div className="personInfomation__edit" onClick={clickSetting}>編輯個人檔案</div>
+                    <div className="personInfomation__edit-icon" onClick={clickSetting}><AiFillSetting style={{width:"20px",height:"20px"}}/></div>
+
+                    
                 </div>
                 <div className="personInfomation__item">
                     <div className="personInfomation__item-num"><div className="post_num">0</div>貼文</div>

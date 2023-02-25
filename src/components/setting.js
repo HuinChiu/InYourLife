@@ -18,12 +18,13 @@ function Setting({memberData,clickSetting,memberId}){
             username:username,
             fullName:fullname,
             introduction:introduction
-        }).then(()=>{
+        }
+        ).then(()=>{
             console.log("會員資料更新成功")
         }).catch((error)=>{
             console.log(error)
         });
-
+        clickSetting();
     };
 
 
