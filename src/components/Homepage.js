@@ -1,4 +1,4 @@
-import { useState,useEffect} from "react";
+import { useState,useEffect,useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { auth,storage } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -30,6 +30,7 @@ function HomePage(){
     async function checkSinIN(){
         //獲取當前會員的uid
         let uidData="";
+
         await onAuthStateChanged(auth,(user)=>{
             if(user){
                 const uid=user.uid;
@@ -78,6 +79,7 @@ function HomePage(){
     function clickBackHomePage(){
         clickPerson?setCLickPerson(false):null
         navigate("/")
+        console.log("click backHome")
     }
     function clickSetting(){
         !setting?setSetting(true):setSetting(false)

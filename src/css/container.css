@@ -83,6 +83,9 @@
     justify-content: space-between;
 
 }
+.container__content{
+    margin: 5px 0px;
+}
 /* 愛心 傳送 收藏icon */
 .container__icon__left{
     display: flex;
@@ -104,11 +107,12 @@
 }
 .container__msg__main{
     display: flex;
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
 
 }
 .container__msg__name{
     margin-right: 10px;
+    font-weight: 700;
 }
 .container__msg__input{
     width: 100%;

@@ -13,6 +13,13 @@
     .mainImg{
         display: none;
     }
+    .mainLog{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .loginBox{
         width: 80%;
     }
@@ -20,7 +27,7 @@
         width: 80px;
     }
 }
-@media(max-width:360px){
+@media(max-width:414px){
     .mainImg{
         display: none;
     }

@@ -4,7 +4,9 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 5px;
 }
 .otherLogo__item:hover{
     background-color: lightgray;
@@ -49,14 +51,12 @@
 .otherLogo__item__personImg{
     width: 25px;
     height: 25px;
-}
-.personImg{
-    display: block;
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
     border: 2px solid black;
+    background-size: cover;
+    background-position: center;
 }
+
 /* lower logo */
 .hamburger{
     display: flex;
@@ -64,6 +64,9 @@
 }
 /*padsideBae*/
 .padSideBar{
+    display: none;
+}
+.padSideBar__hamburger{
     display: none;
 }
 
@@ -92,7 +95,8 @@
     width: 75%;
     border-radius: 5px;
     background-color: #FFF;
-    box-shadow: 1px 1px 8px #888888;;
+    box-shadow: 1px 1px 8px #888888;
+    text-align: center;
 }
 
 @media (max-width:768px) {
@@ -109,7 +113,7 @@
         position: fixed;
         z-index: 5;
         display: block;
-        width: 95%;
+        width: 100%;
         background-color: #FFF;
         border-bottom: 1px solid lightgray;
     }
@@ -133,6 +137,7 @@
     .otherLogo__item{
         margin: 10px;
         padding: 0px;
+        border-radius: 50%;
     }
     .otherLogo{
         width: 393px;
@@ -147,6 +152,29 @@
     .hamburger{
         display: none;
     }
+    .mainLogo{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .padSideBar__hamburger{
+        display: block;
+        
+    }
+    .padotherLogo__signout{
+        position:absolute;
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+        bottom: 10%;
+        right:0;
+        height: 20px;
+        top:5px;
+        width: 50px;
+        border-radius: 5px;
+        background-color: #FFF;
+        box-shadow: 1px 1px 8px #888888;
+        text-align: center;
+    }
 }
 @media (max-width:412px) {
     .mainLogo{
@@ -160,6 +188,5 @@
         width: 100px;
         padding: 5px;
     }
-    .otherLogo__group{
-    }
+
 }

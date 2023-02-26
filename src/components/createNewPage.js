@@ -1,4 +1,5 @@
 import { useState,useEffect,useRef } from "react";
+import Drapzone from "./dropzone";
 import { db,storage } from "../../firebase";
 import { ref,uploadBytesResumable,getDownloadURL } from "firebase/storage";
 import { addDoc,collection, serverTimestamp } from "firebase/firestore";
@@ -17,7 +18,7 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
     const [file, setFile] = useState("");
 
     const navigate=useNavigate()
-
+    const dragBox=useRef(null)
 
     const handleChange=async (e)=>{
         setNextStep(true)
@@ -31,6 +32,9 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
         console.log("我是Images",localImgUrl)
     }
     console.log("我是外面的file",file)
+
+
+    //   <ImageAudioVideo />
     //上傳照片至storage
     function uploadImg(){
         console.log(context)
@@ -55,6 +59,9 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
                     username:memberData.username,
                     images:url,
                     caption:context,
+                    message:[],
+                    like:[],
+                    comment:[]
                 }).then((docRef)=>{
                     console.log("上傳完畢",docRef.id)
                 });
@@ -100,12 +107,16 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
         :
         //建立新貼文框
         <div className="newPage__container">
-        <div className="newPage__container_close-btn" onClick={clickCreatNewHandler}>
-            <CgClose style={{width:"50px",height:"50px"}}></CgClose>
-        </div>
-        <div className="newPage__box">
-            <div className="newPage__box_title">建立新貼文</div>
-            <div className="newPage__box_putImg">
+            <div className="newPage__container_close-btn" onClick={clickCreatNewHandler}>
+                <CgClose style={{width:"50px",height:"50px"}}></CgClose>
+            </div>
+            {/* <Drapzone></Drapzone> */}
+            {/* ----- */}
+            <div className="newPage__box">
+                <div className="newPage__box_title">建立新貼文</div>
+                <div className="newPage__box_putImg"
+                ref={dragBox}>
+
                 <div className="newPage__box_putImg-icon"><FaPhotoVideo style={{width:"50%",height:"50%"}}/></div>
                 <div className="newPage__box_putImg-text">將相片和影片拖曳到這裡</div>
                 <label htmlFor ="uploadPostImg">
@@ -114,10 +125,9 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
 
                 <div className="newPage__box_putImg-btn">從電腦裡選擇</div>
                 </label>
-
             </div>
         </div>
-    </div>
+        </div>
         }
 
 

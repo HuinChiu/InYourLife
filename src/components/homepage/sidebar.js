@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import { auth } from "../../../firebase";
 import {BsInstagram }from "react-icons/bs";
@@ -17,9 +17,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
     const [openMore,setOpenMore]=useState(false)
     //登出後導回首頁
 
-    const navigate=useNavigate()
-
-
+    const navigate=useNavigate();
 
     function signOUT(){
       console.log("signout");
@@ -62,9 +60,8 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                     <div className="otherLogo__item" onClick={clickCreatNewHandler}>
                         <MdOutlineAddBox style={style}/><div className="otherLogo__item__title">建立</div>
                     </div>
-                    <div className="otherLogo__item" onClick={clickPersonHandler}>
-                        <div className="otherLogo__item__personImg">
-                            <img className="personImg" src={personImg}></img>
+                    <div className="otherLogo__item" onClick={clickPersonHandler} >
+                        <div className="otherLogo__item__personImg" style={{backgroundImage:`url(${personImg})`}}>
                         </div>
                         <div className="otherLogo__item__title">個人檔案</div>
                     </div>
@@ -81,11 +78,18 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
 
 
         </div>
-        <div className="padSideBar">
+        <div className="padSideBar padSideBar_top">
             <div className="mainLogo" onClick={clickBackHomePage}>
                 <img className="sideBarLogo" src={logotitle}/>
-                <div className="sideBarLogo__ins"><BsInstagram style={style}/></div>
+                <div className="padSideBar__hamburger">
+                    <div className="padotherLogo__item" onClick={clickHandler}>
+                        <RxHamburgerMenu style={style}/>
+                        <div className="otherLogo__item__title" >更多</div>
+                        {openMore?<div className="padotherLogo__signout" onClick={signOUT}>登出</div>:null}
+                    </div>
+                </div>
             </div>
+
         </div>
         <div className="padSideBar">
                 <div className="otherLogo__group">

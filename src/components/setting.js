@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { updateDoc,doc} from "firebase/firestore";
 import { CgClose } from "react-icons/cg";
 function Setting({memberData,clickSetting,memberId}){
-    console.log(memberData)
+    console.log("我是setting",memberData)
     console.log(memberId)
 
     const [username,setUsername]=useState("")

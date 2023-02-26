@@ -137,11 +137,22 @@
     height: 50%;
     resize: none
 }
+@media (max-width:1280px) {
+    .perViewPost__input{
+        padding: 10px;
+    }
+}
 @media (max-width:768px) {
     .newPage__box{
         width: 80%;
         margin: auto;
         height: 50%;
+    }
+
+    .perViewPost__member__img{
+        width: 30px;
+        height: 30px;
+        margin: 0px;
     }
 }
 @media (max-width:360px) {
