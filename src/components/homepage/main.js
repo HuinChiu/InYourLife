@@ -4,7 +4,7 @@ import { collection,getDocs,onSnapshot, orderBy, query, Timestamp } from "fireba
 import TopBar from "./topBar";
 import Container from "./container";
 import { FaPooStorm } from "react-icons/fa";
-function Main({memberData}){
+function Main({memberData,memberId}){
     console.log("我是main ,memnerdata",memberData)
     const [posts,setPosts]=useState([])
 
@@ -41,6 +41,7 @@ function Main({memberData}){
                     comment={post.comment}
                     dataId={id}
                     memberData={memberData}
+                    memberId={memberId}
                     >
                     </Container>
             ))}

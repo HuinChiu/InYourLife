@@ -59,9 +59,9 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
                     username:memberData.username,
                     images:url,
                     caption:context,
-                    message:[],
+                    comment:[],
                     like:[],
-                    comment:[]
+                    uid:memberData.userId
                 }).then((docRef)=>{
                     console.log("上傳完畢",docRef.id)
                 });

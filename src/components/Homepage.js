@@ -35,14 +35,12 @@ function HomePage(){
             if(user){
                 const uid=user.uid;
                 uidData=uid;
-                console.log("我是獲取當前會員",uidData)
                 //撈取資料庫內當前會員資料
                 const uidRef =query(collection(db,"user"),where("userId","==",uidData))
                 onSnapshot(uidRef,(snapshots)=>{
                     snapshots.docs.forEach( a => {
                         console.log(a.id)
                         const user=a.data();
-                        console.log("我是查詢到的會員資料",user)
                         setMemberData(user)
                         setUsername(user.username);
                         setFullName(user.fullName);
@@ -54,12 +52,9 @@ function HomePage(){
                 })
             }
             else{
-                console.log("未登入");
                 navigate("/signin");
             }
         })
-        console.log("我是最後的uidData",uidData)  //印出獲取當前會員uid結果
-        console.log(memberId)
 
     };
 
@@ -79,11 +74,9 @@ function HomePage(){
     function clickBackHomePage(){
         clickPerson?setCLickPerson(false):null
         navigate("/")
-        console.log("click backHome")
     }
     function clickSetting(){
         !setting?setSetting(true):setSetting(false)
-        console.log("clickSeeting")
     }
 
 
@@ -117,6 +110,7 @@ function HomePage(){
                 />:
                 <Main
                 memberData={memberData}
+                memberId={memberId}
                 />}
             </div>
             {clickCreateNewPage?<CreateNewPage 

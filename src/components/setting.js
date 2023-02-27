@@ -1,32 +1,90 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { db } from "../../firebase";
-import { updateDoc,doc} from "firebase/firestore";
+import { updateDoc,doc,collection, query, where,getDocs,arrayUnion} from "firebase/firestore";
 import { CgClose } from "react-icons/cg";
 function Setting({memberData,clickSetting,memberId}){
-    console.log("我是setting",memberData)
-    console.log(memberId)
 
     const [username,setUsername]=useState("")
     const [fullname,setFullname]=useState("")
     const [introduction,setIntroduction]=useState("")
+
+    const [likeData,setLikeData]=useState([])
+
     //更新會員資料上傳至storage
     async function updateUserData(){
-        console.log("click setting!!")
+        //更新會員資料庫的資料
         const washingtonRef=doc(db,"user",memberId);
         await updateDoc(washingtonRef,{
             username:username,
             fullName:fullname,
             introduction:introduction
         }
-        ).then(()=>{
-            console.log("會員資料更新成功")
-        }).catch((error)=>{
+        ).catch((error)=>{
             console.log(error)
         });
-        clickSetting();
-    };
+        //獲取資料庫含有會員貼文的資料
+        const postsRef = collection(db, "posts");
+        const q = query(postsRef, where("uid", "==", memberData.userId));
+        const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((document) => {
+                //更新按讚內會員姓名
+                let likeDataresult=document.data().like
+                for (let i=0;i<likeDataresult.length;i++){
+                    if(likeDataresult[i].uid == memberData.userId){
+                        console.log(likeDataresult[i].uid )
+                        likeDataresult[i].username=username
+                    }
+                }
+                const washingPostRef=doc(db,"posts",document.id)
+                updateDoc(washingPostRef,{
+                    like:likeDataresult
+                        })
+                // 更新貼文資料庫的會員姓名資料
+                updateDoc(washingPostRef,{
+                    username:username,
+                }
+                ).catch((error)=>{
+                    console.log(error)
+                });
+                //更新成功
 
+                //更新post username
+                const queryAllposts=getDocs(collection(db,"posts")).then((data)=>{
+                    let documentComment =[]
+                    let documentID=[]
+                    data.forEach((doc)=>{
+                        documentComment.push(doc.data().comment)
+                        // documentID.push(doc.id)
+                        documentID.push(doc.id)
+                    })
+                    for(let i=0;i<documentComment.length;i++){
+                        let allComment=documentComment[i]
+                        for (let doc of allComment){
+                            console.log(doc)
+                            if (doc.uid===memberData.userId){
+                                doc.username=username
+                            }
+                            
+                        }
+                    }
+                    for (let i=0;i<documentID.length;i++){
+                        console.log(documentID[i])
+                        const washingPostRef=doc(db,"posts",documentID[i])
+                        updateDoc(washingPostRef,{
+                            comment:documentComment[i]
+                                })
+                    }
+                })
+
+
+
+                clickSetting();
+                });
+
+                
+
+    };
 
 
     return(

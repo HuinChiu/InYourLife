@@ -109,18 +109,9 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                         <MdOutlineAddBox style={style}/><div className="otherLogo__item__title">建立</div>
                     </div>
                     <div className="otherLogo__item" onClick={clickPersonHandler}>
-                        <div className="otherLogo__item__personImg">
-                            <img className="personImg" src={personImg}></img>
+                        <div className="otherLogo__item__personImg" style={{backgroundImage:`url(${personImg})`}}>
                         </div>
                         <div className="otherLogo__item__title">個人檔案</div>
-                    </div>
-                </div>
-
-                <div className="hamburger">
-                    <div className="otherLogo__item" onClick={clickHandler}>
-                        <RxHamburgerMenu style={style}/>
-                        <div className="otherLogo__item__title" >更多</div>
-                        {openMore?<div className="signout" onClick={signOUT}>登出</div>:null}
                     </div>
                 </div>
         </div>

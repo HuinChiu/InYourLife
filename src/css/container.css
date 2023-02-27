@@ -128,6 +128,15 @@
     width: 100%;
     margin:15px 0px;
 }
+
+/*暫時*/
+.container:nth-child(1){
+    margin-top: 80px;
+}
+.container:nth-last-child(1){
+    margin-bottom: 80px;
+}
+
 @media (max-width:1200px) {
     .container{
         margin: 0px auto;

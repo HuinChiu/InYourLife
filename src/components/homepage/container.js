@@ -10,7 +10,7 @@ import{BiChevronLeftCircle} from "react-icons/bi"
 import{BiChevronRightCircle} from "react-icons/bi"
 
 
-function Container({username,caption,images,personImg,comment,dataId,memberData}){
+function Container({memberId,username,caption,images,personImg,comment,dataId,memberData}){
     //icon style
     const style= {padding:'10px',width:"25px",height:"25px"};
     const likestyle= {padding:'10px',width:"25px",height:"25px",color:"#e42c64"};
@@ -21,6 +21,7 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
     const [showLike,setShowLike]=useState(false);
     const [inputComment,setInputComment]=useState("")
     const [userIsLikeData,setUserIsLikeData]=useState([])
+    const [userImg,setUserImg]=useState("")
 
 
     useEffect(()=>{
@@ -42,6 +43,7 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
                 await updateDoc(washingtonRef,{
                     like:arrayUnion(
                         {
+                        uid:memberData.userId,
                         username:memberData.username,
                         like:false,
                         })
@@ -60,6 +62,23 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
         checkMemberLike();
     },[])
 
+    //獲取資料庫user最新頭像
+    // const userImage= async ()=>{
+    //     const docRef = doc(db, "user", memberId);
+    //     const docSnap = await getDoc(docRef);
+    //     if (docSnap.exists()) {
+    //         console.log("Document data:", docSnap.data().personImg);
+    //         const memberImage=docSnap.data().personImg
+    //         setUserImg(memberImage)
+    //       } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //       }
+    // }
+
+    // useEffect(()=>{
+    //     userImage();
+    // },[])
 
     //如果是like:true點擊改為false
     const handleLike=async ()=>{
@@ -73,6 +92,7 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
         await updateDoc(washingtonRef,{
             like:arrayUnion(
                 {
+                uid:memberData.userId,
                 username:memberData.username  ,
                 like:true,
                 })
@@ -80,7 +100,8 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
         )
         await updateDoc(washingtonRef,{
             like:arrayRemove(
-                {
+                {   
+                    uid:memberData.userId,
                     username:memberData.username  ,
                     like:false
                 }
@@ -94,7 +115,7 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
         await updateDoc(washingtonRef,{
             like:arrayUnion(
                 {
-                username:username,
+                username:memberData.username,
                 like:false,
                 })
             }
@@ -102,7 +123,8 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
         await updateDoc(washingtonRef,{
             like:arrayRemove(
                 {
-                    username:username,
+                    uid:memberData.userId,
+                    username:memberData.username,
                     like:true
                 }
             )
@@ -123,7 +145,8 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
             await updateDoc(washingtonRef,{
                 comment:arrayUnion(
                     {
-                    username:username,
+                    uid:memberData.userId,
+                    username:memberData.username,
                     message:inputComment,
                 }
                     ),
@@ -151,7 +174,7 @@ function Container({username,caption,images,personImg,comment,dataId,memberData}
                 <div className="container__name">
                     <div className="container__name__title">
                         <div className="container__name__personImagebox">
-                            <img className="container__name__personImage" src={personImg}></img>
+                            <img className="container__name__personImage" src={userImg}></img>
                             <div className="container__name__username">{username}</div>
                         </div>
 

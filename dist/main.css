@@ -239,6 +239,7 @@ hr{
 .main{
     display: flex;
     flex-direction: column;
+
 }
 
 @media (max-width:768px) {
@@ -266,7 +267,9 @@ hr{
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 5px;
 }
 .otherLogo__item:hover{
     background-color: lightgray;
@@ -311,14 +314,12 @@ hr{
 .otherLogo__item__personImg{
     width: 25px;
     height: 25px;
-}
-.personImg{
-    display: block;
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
     border: 2px solid black;
+    background-size: cover;
+    background-position: center;
 }
+
 /* lower logo */
 .hamburger{
     display: flex;
@@ -326,6 +327,9 @@ hr{
 }
 /*padsideBae*/
 .padSideBar{
+    display: none;
+}
+.padSideBar__hamburger{
     display: none;
 }
 
@@ -354,7 +358,8 @@ hr{
     width: 75%;
     border-radius: 5px;
     background-color: #FFF;
-    box-shadow: 1px 1px 8px #888888;;
+    box-shadow: 1px 1px 8px #888888;
+    text-align: center;
 }
 
 @media (max-width:768px) {
@@ -395,6 +400,7 @@ hr{
     .otherLogo__item{
         margin: 10px;
         padding: 0px;
+        border-radius: 50%;
     }
     .otherLogo{
         width: 393px;
@@ -406,16 +412,31 @@ hr{
         border-top: 1px solid lightgray;
         background-color: #FFF;
     }
-    /* .hamburger{
+    .hamburger{
         display: none;
-    } */
+    }
     .mainLogo{
         display: flex;
         justify-content: space-between;
     }
-    .signout{
+
+    .padSideBar__hamburger{
+        display: block;
+        
+    }
+    .padotherLogo__signout{
+        position:absolute;
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+        bottom: 10%;
+        right:0;
+        height: 20px;
+        top:50px;
         width: 50px;
-        left: 78%;
+        border-radius: 5px;
+        background-color: #FFF;
+        box-shadow: 1px 1px 8px #888888;
+        text-align: center;
     }
 }
 @media (max-width:412px) {
@@ -580,6 +601,9 @@ hr{
     justify-content: space-between;
 
 }
+.container__content{
+    margin: 5px 0px;
+}
 /* 愛心 傳送 收藏icon */
 .container__icon__left{
     display: flex;
@@ -601,11 +625,12 @@ hr{
 }
 .container__msg__main{
     display: flex;
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
 
 }
 .container__msg__name{
     margin-right: 10px;
+    font-weight: 700;
 }
 .container__msg__input{
     width: 100%;
@@ -621,6 +646,15 @@ hr{
     width: 100%;
     margin:15px 0px;
 }
+
+/*暫時*/
+.container:nth-child(1){
+    margin-top: 80px;
+}
+.container:nth-last-child(1){
+    margin-bottom: 80px;
+}
+
 @media (max-width:1200px) {
     .container{
         margin: 0px auto;
@@ -1021,11 +1055,22 @@ hr{
     height: 50%;
     resize: none
 }
+@media (max-width:1280px) {
+    .perViewPost__input{
+        padding: 10px;
+    }
+}
 @media (max-width:768px) {
     .newPage__box{
         width: 80%;
         margin: auto;
         height: 50%;
+    }
+
+    .perViewPost__member__img{
+        width: 30px;
+        height: 30px;
+        margin: 0px;
     }
 }
 @media (max-width:360px) {
