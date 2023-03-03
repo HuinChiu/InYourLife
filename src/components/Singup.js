@@ -38,8 +38,10 @@ const SignUp =()=>{
                 followers:[],
                 following:[],
                 fullName:fullName,
+                introduction:"",
                 userId:uid,
                 username:username,
+                collection:[],
                 personImg:"https://firebasestorage.googleapis.com/v0/b/inyourlife-716bb.appspot.com/o/logo2.png?alt=media&token=ded852ae-30df-49ba-827f-6db4dcea6376"
             }
             console.log(data)

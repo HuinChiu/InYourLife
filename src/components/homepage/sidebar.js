@@ -9,6 +9,7 @@ import {FaRegHeart} from "react-icons/fa"
 import {MdOutlineAddBox} from "react-icons/md"
 import {BiCircle} from "react-icons/bi"
 import {RxHamburgerMenu} from 'react-icons/rx'
+import {FaSignOutAlt} from "react-icons/fa"
 import logotitle from "../../assets/image/logoTitle.png";
 import { signOut } from "firebase/auth";
 
@@ -69,9 +70,10 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
 
                 <div className="hamburger">
                     <div className="otherLogo__item" onClick={clickHandler}>
-                        <RxHamburgerMenu style={style}/>
-                        <div className="otherLogo__item__title" >更多</div>
-                        {openMore?<div className="signout" onClick={signOUT}>登出</div>:null}
+                        <FaSignOutAlt style={style}/>
+                        <div className="otherLogo__item__title" onClick={signOUT}>
+                            <div>登出</div>
+                        </div>
                     </div>
                 </div>
             </div>

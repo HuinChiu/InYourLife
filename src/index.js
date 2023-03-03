@@ -9,6 +9,8 @@ import "./css/container.css"
 import "./css/person.css"
 import "./css/createNewPage.css"
 import "./css/setting.css"
+import "./css/showAllcomment.css"
+import "./css/deleteAlert.css"
 import { BrowserRouter } from "react-router-dom";
 
 

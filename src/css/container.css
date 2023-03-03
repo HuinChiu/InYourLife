@@ -96,6 +96,18 @@
     display: flex;
     margin: 5px 0px;
 }
+.caption__icon__like{
+    cursor: pointer;
+}
+.caption__icon__msg{
+    cursor: pointer;
+}
+.caption__icon__sendMsg{
+    cursor: pointer;
+}
+.caption__icon__mark{
+    cursor: pointer;
+}
 /* 留言區 */
 .container__auth{
     margin: 5px 0px;
@@ -109,6 +121,9 @@
     display: flex;
     /* margin: 5px 0px; */
 
+}
+.container__msg__like{
+    margin-right: 5px;
 }
 .container__msg__name{
     margin-right: 10px;
@@ -128,7 +143,13 @@
     width: 100%;
     margin:15px 0px;
 }
-
+.container__seeMore{
+    color: darkgray;
+    cursor: pointer;
+}
+.container__deletePost{
+    cursor: pointer;
+}
 /*暫時*/
 .container:nth-child(1){
     margin-top: 80px;

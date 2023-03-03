@@ -59,7 +59,7 @@ function CreateNewPage({clickCreatNewHandler,memberData,personImg}){
                     username:memberData.username,
                     images:url,
                     caption:context,
-                    comment:[],
+                    comment:{},
                     like:[],
                     uid:memberData.userId
                 }).then((docRef)=>{

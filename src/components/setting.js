@@ -23,59 +23,48 @@ function Setting({memberData,clickSetting,memberId}){
         ).catch((error)=>{
             console.log(error)
         });
+
         //獲取資料庫含有會員貼文的資料
         const postsRef = collection(db, "posts");
         const q = query(postsRef, where("uid", "==", memberData.userId));
         const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((document) => {
-                //更新按讚內會員姓名
-                let likeDataresult=document.data().like
-                for (let i=0;i<likeDataresult.length;i++){
-                    if(likeDataresult[i].uid == memberData.userId){
-                        console.log(likeDataresult[i].uid )
-                        likeDataresult[i].username=username
-                    }
-                }
+                // 更新貼文資料庫的會員姓名資料
                 const washingPostRef=doc(db,"posts",document.id)
                 updateDoc(washingPostRef,{
-                    like:likeDataresult
-                        })
-                // 更新貼文資料庫的會員姓名資料
-                updateDoc(washingPostRef,{
                     username:username,
-                }
-                ).catch((error)=>{
-                    console.log(error)
-                });
-                //更新成功
-
-                //更新post username
-                const queryAllposts=getDocs(collection(db,"posts")).then((data)=>{
-                    let documentComment =[]
-                    let documentID=[]
-                    data.forEach((doc)=>{
-                        documentComment.push(doc.data().comment)
-                        // documentID.push(doc.id)
-                        documentID.push(doc.id)
-                    })
-                    for(let i=0;i<documentComment.length;i++){
-                        let allComment=documentComment[i]
-                        for (let doc of allComment){
-                            console.log(doc)
-                            if (doc.uid===memberData.userId){
-                                doc.username=username
-                            }
-                            
-                        }
-                    }
-                    for (let i=0;i<documentID.length;i++){
-                        console.log(documentID[i])
-                        const washingPostRef=doc(db,"posts",documentID[i])
-                        updateDoc(washingPostRef,{
-                            comment:documentComment[i]
-                                })
-                    }
                 })
+
+                // //更新post username
+                // const queryAllposts=getDocs(collection(db,"posts")).then((data)=>{
+                //     let documentComment =[]
+                //     let documentID=[]
+                //     //找到貼文裡留言者
+                //     data.forEach((doc)=>{
+                //         documentComment.push(doc.data().comment)//抓取留言內容
+                //         documentID.push(doc.id)//抓取留言者uid
+                //     })
+                //     console.log("documentComment",documentComment)
+                //     console.log("documentID",documentID)
+                //     for(let i=0;i<documentComment.length;i++){
+                //         let allComment=documentComment[i]
+                //         for (let doc of allComment){
+                //             console.log("allcomment",doc)
+                //             if (doc.uid===memberData.userId){
+                //                 doc.username=username
+                //             }
+                            
+                //         }
+                //     }
+
+                //     for (let i=0;i<documentID.length;i++){
+                //         console.log("document id",documentID[i])
+                //         const washingPostRef=doc(db,"posts",documentID[i])
+                //         updateDoc(washingPostRef,{
+                //             comment:documentComment[i]
+                //                 })
+                //     }
+                // })
 
 
 
