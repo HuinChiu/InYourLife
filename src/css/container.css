@@ -8,19 +8,44 @@
     align-items: center;
 }
 .container__name__title{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    font-weight: 700;
+    justify-content: space-between;
+    margin: 5px;
 }
 /* 照片區 */
+.container__name__personImagebox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.container__name__personImage{
+    width:30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.container__name__username{
+    margin: 5px;
+}
 .container__picture{
     border: 2px solid black;
-    width: 100%;
-    height: 300px;
+    max-width: 100%;
     position: relative;
+}
+.post__main__picture{
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    display: block;
 }
 .picture__like{
     position: absolute;
+    top:0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -58,6 +83,9 @@
     justify-content: space-between;
 
 }
+.container__content{
+    margin: 5px 0px;
+}
 /* 愛心 傳送 收藏icon */
 .container__icon__left{
     display: flex;
@@ -68,9 +96,22 @@
     display: flex;
     margin: 5px 0px;
 }
+.caption__icon__like{
+    cursor: pointer;
+}
+.caption__icon__msg{
+    cursor: pointer;
+}
+.caption__icon__sendMsg{
+    cursor: pointer;
+}
+.caption__icon__mark{
+    cursor: pointer;
+}
 /* 留言區 */
 .container__auth{
     margin: 5px 0px;
+    font-weight: 700;
 }
 .container__msg{
     display: flex;
@@ -78,11 +119,15 @@
 }
 .container__msg__main{
     display: flex;
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
 
+}
+.container__msg__like{
+    margin-right: 5px;
 }
 .container__msg__name{
     margin-right: 10px;
+    font-weight: 700;
 }
 .container__msg__input{
     width: 100%;
@@ -97,4 +142,53 @@
 .container__hr{
     width: 100%;
     margin:15px 0px;
+}
+.container__seeMore{
+    color: darkgray;
+    cursor: pointer;
+}
+.container__deletePost{
+    cursor: pointer;
+}
+/*暫時*/
+.container:nth-child(1){
+    margin-top: 80px;
+}
+.container:nth-last-child(1){
+    margin-bottom: 80px;
+}
+
+@media (max-width:1200px) {
+    .container{
+        margin: 0px auto;
+        width: 60%;
+    }
+
+}
+
+@media (max-width:768px) {
+    .sideBarLogo{
+        padding: 10px 5px;
+    }
+    .post__main__picture{
+        height: 400px;
+    }    
+    .container{
+        width: 90%;
+    }
+    .otherLogo__item{
+        padding: 10px;
+    }
+}
+
+@media (max-width:412px) {
+    .post__main__picture{
+        height: 300px;
+    }    
+    .container{
+        width: 100%;
+    }
+    .container__main{
+        margin: 10px;
+    }
 }

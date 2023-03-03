@@ -1,4 +1,3 @@
-import React from "react";
 import {BiCircle} from "react-icons/bi"
 import{BiChevronLeftCircle} from "react-icons/bi"
 import{BiChevronRightCircle} from "react-icons/bi"

@@ -4,15 +4,27 @@
 }
 .homeMain{
     margin: auto;
+    width: 100%;
 }
 .main{
     display: flex;
     flex-direction: column;
+
 }
 
 @media (max-width:768px) {
     .homeBox{
         display: block;
         justify-content: space-between;
+    }
+    .container:nth-last-child(1){
+        margin-bottom: 30px;
+    }
+}
+
+
+@media (max-width:412px) {
+    .container:nth-last-child(1){
+        margin-bottom: 20px;
     }
 }

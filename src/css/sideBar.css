@@ -3,6 +3,16 @@
 .otherLogo__item{
     display: flex;
     align-items: center;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 5px;
+}
+.otherLogo__item:hover{
+    background-color: lightgray;
+}
+.otherLogo__item__title{
+    margin: 0px 15px;
 }
 .leftSideBar{
     width: 15%;
@@ -12,17 +22,20 @@
     justify-content: space-around;
     position: fixed;
     left: 0;
+    z-index: 5;
     border-right: 1px solid lightgray;
 }
 /* toplogo */
 .mainLogo{
-    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .sideBarLogo{
     width: 60%;
     margin:0px 10px;
+    align-items: center;
 }
 .sideBarLogo__ins{
     display: none;
@@ -33,14 +46,31 @@
     flex-direction: column;
     justify-content: space-between;
     height: 90%;
+    position: relative;
 }
+.otherLogo__item__personImg{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-size: cover;
+    background-position: center;
+}
+
 /* lower logo */
 .hamburger{
     display: flex;
     flex-direction: column;
 }
+/*padsideBae*/
+.padSideBar{
+    display: none;
+}
+.padSideBar__hamburger{
+    display: none;
+}
 
-@media(max-width:1268px){
+@media(max-width:1200px){
     .leftSideBar{
         width: 8%;
     }
@@ -56,26 +86,107 @@
     }
 }
 
-/* @media (max-width:768px) {
+.signout{
+    position:absolute;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    bottom: 10%;
+    left:10%;
+    width: 75%;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 1px 1px 8px #888888;
+    text-align: center;
+}
+
+@media (max-width:768px) {
     .leftSideBar{
-        width: 100%;
-        flex-direction: column;
+        display: none;
+        /* width: 100%; */
         justify-content: space-between;
+    }
+    .padSideBar{
+        display: block;
 
     }
     .mainLogo{
-        justify-content: flex-start;
-        align-items: flex-start;
+        position: fixed;
+        z-index: 5;
+        display: block;
+        width: 100%;
+        background-color: #FFF;
+        border-bottom: 1px solid lightgray;
+    }
+    .sideBarLogo{
+        display: block;
+        width: 150px;
     }
     .sideBarLogo__ins{
         display: none;
     }
+    .otherLogo__group{
+        position: fixed;
+        z-index: 5;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #FFF;
+        border-top: 1px solid lightgray;
+    }
+    .otherLogo__item{
+        margin: 10px;
+        padding: 0px;
+        border-radius: 50%;
+    }
     .otherLogo{
+        width: 393px;
+        position: absolute;
+        bottom: 0;
+        height: auto;
         flex-direction: row;
         align-items: flex-end;
         border-top: 1px solid lightgray;
+        background-color: #FFF;
     }
     .hamburger{
         display: none;
     }
-} */
+    .mainLogo{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .padSideBar__hamburger{
+        display: block;
+        
+    }
+    .padotherLogo__signout{
+        position:absolute;
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+        bottom: 10%;
+        right:0;
+        height: 20px;
+        top:50px;
+        width: 50px;
+        border-radius: 5px;
+        background-color: #FFF;
+        box-shadow: 1px 1px 8px #888888;
+        text-align: center;
+    }
+}
+@media (max-width:412px) {
+    .mainLogo{
+        padding: 0px;
+    }
+    .otherLogo__item{
+        padding: 0px;
+    }
+    .sideBarLogo{
+        display: block;
+        width: 100px;
+        padding: 5px;
+    }
+
+}

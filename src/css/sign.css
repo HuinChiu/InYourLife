@@ -13,6 +13,13 @@
     .mainImg{
         display: none;
     }
+    .mainLog{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .loginBox{
         width: 80%;
     }
@@ -20,7 +27,7 @@
         width: 80px;
     }
 }
-@media(max-width:360px){
+@media(max-width:414px){
     .mainImg{
         display: none;
     }
@@ -32,7 +39,7 @@
     }
 }
 .mainImg{
-    width:40%;
+    width:25%;
     height: auto;
     margin:20px
 }
@@ -101,6 +108,44 @@
 #password:focus::-webkit-input-placeholder {
     transform: scale(0.8) translateY(-10px);
   }
+
+#userName{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#userName::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#userName:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+#fullName{
+    width: 90%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+}
+#fullName::-webkit-input-placeholder {
+    transition: 0.5s; 
+    font-size: 12px; 
+    transform-origin: top left; 
+  }
+  
+#fullName:focus::-webkit-input-placeholder {
+    transform: scale(0.8) translateY(-10px);
+  }
+
+  
 .signin__btn{
     width: 90%;
     border: 0px;
@@ -113,7 +158,6 @@
 }
 .signin__warning{
     color: red;
-    margin-left:30px;
     padding: 5px 10px;
 }
 

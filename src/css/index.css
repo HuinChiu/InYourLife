@@ -3,9 +3,21 @@ html,body{
     height: 100%;
     margin:0px;
     padding: 0px;
-    background-color: antiquewhite;
+    background-color: #FFF;
 }
 .root{
     height: inherit;
 
 }
+a:link{
+    text-decoration: none;
+    background-color: #fff;
+}
+a:active {
+    text-decoration:underline;
+    background-color:#fff;
+    }
+a:visited {
+    text-decoration:underline;
+    background-color:#fff;
+    }
