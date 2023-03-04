@@ -29,13 +29,9 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
 
     //點擊頭像上傳新的照片
     async function handleUpload(e){
-        console.log("click upload")
         const file =e.target.files[0];
-        console.log(file)
         if (!file) return;
         await uploadImg(file);
-        console.log("uploadImng之後",personImg)
-
     }
     //上傳至storage
     async function uploadImg(file){
@@ -57,8 +53,6 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                 //更新firestroe會員個人頭像url
                 await updateDoc(washingtonRef,{
                     personImg:url
-                }).then(()=>{
-                    console.log("update!")
                 })
                 .catch((error)=>console.log(error)) 
             })
@@ -67,7 +61,6 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
 
     useEffect(()=>{
          //找出自己的發文內容
-         console.log("初始selectOption",selectOption)
          if (selectOption==="post"){
             const q = query(collection(db, "posts"), where("uid", "==", memberData.userId),orderBy("timestamp","desc"));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -85,43 +78,30 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
         const findCollect=async()=>{
             const unsub = await onSnapshot(doc(db, "user", memberId), (doc) => {
                 let collectList=doc.data().collect; //獲取user collect值
-                console.log("funtion collectList",collectList)
                 setCollectData(collectList)
-    
             });
+
         }
         //找出收藏文章
 
         findCollect();
 
     },[])
-    console.log("collectList:",collectData)
 
-    // function getCollectData (){
-    //     const collect =memberData.collect
-    //     for (let i=0;i<collect.length;i++){
-    //         const unsub = onSnapshot(doc(db, "posts", collect[i]), (doc) => {
-    //             const data= doc.data()
-    //             setCollectlPostsData((pre)=>[...pre,data])
-    //         });
-    //     }
-    // }
 
     const handleSelect =async()=>{
-        setSelectOption("collect")
-        const result=[]
+        setCollectData([])
+        let result=[]
         for(let i of collectData){
             const docRef=doc(db, "posts", i)
-            const docData=await onSnapshot(docRef, (doc) => {
-                const data=doc.data();
-                result.push(data)
-                console.log("我是data",data)
+            const docData=onSnapshot(docRef, (doc) => {
+                setFullCollect(pre=>[...pre,doc.data()])
             })
         }
-        console.log("我是result",result)
-        setTimeout(()=>{setFullCollect(result)},0)
+                setSelectOption("collect")
     }
-    console.log(fullCollect,"123")
+
+
 
     const handlePost =()=>{
         setSelectOption("post")
@@ -130,22 +110,12 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     const showContent=()=>{
         setclickShowAllComment(true)
     }
-    // async function getPostData(data){
-    //     const collectData=[]
-    //     for (let i=0;i<data.length;i++){
-    //         console.log(data[i])                   
-    //         const unsub = await onSnapshot(doc(db, "posts", data[i]), (post) => {
-    //             console.log("Current data: ", post.data());
-    //             collectData.push(post.data())
-    //         });
-    //     }
-    //     console.log("我是function裡data",collectData)
-    // }
+
         
     return(
         <>
             <div className="personDocument">
-                {/* {clickShowAllcomment?<ShowAllcomment></ShowAllcomment>:null} */}
+                {clickShowAllcomment?<ShowAllcomment></ShowAllcomment>:null}
             <div className="personDocument__img">
                 <label htmlFor ="uploadPersonimg">
                 <input id="uploadPersonimg" type="file" accept="image/*" style={{display:"none"}} onChange={handleUpload}/>

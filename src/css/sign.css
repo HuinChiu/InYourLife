@@ -180,6 +180,7 @@ hr{
 }
 .useGooglesignin__item{
     padding: 10px;
+    cursor: pointer;
 }
 .signup{
     width: 80%;

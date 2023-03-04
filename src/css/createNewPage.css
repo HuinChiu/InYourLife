@@ -101,6 +101,17 @@
     aspect-ratio:auto; /* ⏹ a perfect square */
 
 }
+.newPage_rightBtn{
+    position: absolute;
+    top: 50%;
+    color:rgb(244, 255, 255,0.6);
+}
+.newPage_leftBtn{
+    position: absolute;
+    top: 50%;
+    right: 43%;
+    color:rgb(244, 255, 255,0.6);
+}
 /* 建立貼文box */
 .newPage__newPost{
     display: flex;

@@ -49,7 +49,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                     <div className="otherLogo__item" onClick={clickBackHomePage}>
                         <AiFillHome style={style}/><div className="otherLogo__item__title">首頁</div>
                     </div>
-                    <div className="otherLogo__item">
+                    {/* <div className="otherLogo__item">
                         <BsSearch style={style}/><div className="otherLogo__item__title">搜尋</div>
                     </div>
                     <div className="otherLogo__item">
@@ -57,7 +57,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                     </div>
                     <div className="otherLogo__item">
                         <FaRegHeart style={style}/><div className="otherLogo__item__title">通知</div>
-                    </div>
+                    </div> */}
                     <div className="otherLogo__item" onClick={clickCreatNewHandler}>
                         <MdOutlineAddBox style={style}/><div className="otherLogo__item__title">建立</div>
                     </div>
@@ -69,9 +69,9 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                 </div>
 
                 <div className="hamburger">
-                    <div className="otherLogo__item" onClick={clickHandler}>
+                    <div className="otherLogo__item"  onClick={signOUT}>
                         <FaSignOutAlt style={style}/>
-                        <div className="otherLogo__item__title" onClick={signOUT}>
+                        <div className="otherLogo__item__title">
                             <div>登出</div>
                         </div>
                     </div>
@@ -84,10 +84,9 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
             <div className="mainLogo" onClick={clickBackHomePage}>
                 <img className="sideBarLogo" src={logotitle}/>
                 <div className="padSideBar__hamburger">
-                    <div className="padotherLogo__item" onClick={clickHandler}>
-                        <RxHamburgerMenu style={style}/>
-                        <div className="otherLogo__item__title" >更多</div>
-                        {openMore?<div className="padotherLogo__signout" onClick={signOUT}>登出</div>:null}
+                    <div className="padotherLogo__item" onClick={signOUT}>
+                        <FaSignOutAlt style={style}/>
+                        <div className="otherLogo__item__title" >登出</div>
                     </div>
                 </div>
             </div>
@@ -98,7 +97,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                     <div className="otherLogo__item" onClick={clickBackHomePage}>
                         <AiFillHome style={style}/><div className="otherLogo__item__title">首頁</div>
                     </div>
-                    <div className="otherLogo__item">
+                    {/* <div className="otherLogo__item">
                         <BsSearch style={style}/><div className="otherLogo__item__title">搜尋</div>
                     </div>
                     <div className="otherLogo__item">
@@ -106,7 +105,7 @@ function SideBar({clickPersonHandler,clickCreatNewHandler,clickBackHomePage,memb
                     </div>
                     <div className="otherLogo__item">
                         <FaRegHeart style={style}/><div className="otherLogo__item__title">通知</div>
-                    </div>
+                    </div> */}
                     <div className="otherLogo__item" onClick={clickCreatNewHandler}>
                         <MdOutlineAddBox style={style}/><div className="otherLogo__item__title">建立</div>
                     </div>

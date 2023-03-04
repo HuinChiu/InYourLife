@@ -188,8 +188,10 @@ function Container({post,memberId,dataId,memberData,personImg}){
         }
         
     }
+    //刪除
     function handleDelete(){
         !clickDelete?setClickDelete(true):setClickDelete(false)
+        
     }
     
 
@@ -217,6 +219,7 @@ function Container({post,memberId,dataId,memberData,personImg}){
             { clickDelete?<DeleteAlert
             handleDelete={handleDelete}
             dataId={dataId}
+            memberId={memberId}
             ></DeleteAlert>:null
             }
                 <div className="container__name">

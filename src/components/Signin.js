@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import iphoneLogo from "../assets/image/iphoneLogo.png"
 import logotitle from "../assets/image/logoTitle.png";
-import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { auth ,db} from "../../firebase";
+import { signInWithEmailAndPassword,FacebookAuthProvider,signInWithPopup } from "firebase/auth";
+import {serverTimestamp,addDoc,doc,getDocs,collection,query, where,onSnapshot} from "firebase/firestore"
 
 const SignIn =()=>{
     const [signinState,setSigninSatate]=useState(true);
@@ -12,7 +13,9 @@ const SignIn =()=>{
     const[passeord,setPassword]=useState("test123");
     const [accountWarning,setAccountWarning]=useState("");
     const [passwordWarning,setPasswordWarning]=useState("");
+    const [currentEmail,setcurrentEmail]=useState("");
     const navigate=useNavigate();
+
 
     function signIn(){
         setAccountWarning("");
@@ -44,10 +47,73 @@ const SignIn =()=>{
 
         })
     }
+
+    async function facebookSignin (){
+        //創建 Facebook 提供者對象的實例
+        const provider = new FacebookAuthProvider();
+        auth.languageCode = 'it';
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+            console.log(user)
+            let useremail=user.email
+
+            if(currentEmail.includes(useremail)){
+                console.log("email已存在")
+                navigate("/")
+            }else{
+            const data={
+                dataCreates:serverTimestamp(),
+                emailAddress:user.email,
+                followers:[],
+                following:[],
+                fullName:user.displayName,
+                introduction:"",
+                userId:user.uid,
+                username:user.displayName,
+                collection:[],
+                personImg:user.photoURL
+            }
+            console.log(data)
+            addDoc(collection(db, "user"), data).then((data)=>{
+                console.log(data); 
+            }).catch((error)=>{
+                console.log("輸入資料庫錯誤",error)
+            });
+            navigate("/");
+            }
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("facebook登入錯誤",errorMessage)
+            // The AuthCredential type that was used.
+            const credential = FacebookAuthProvider.credentialFromError(error);
+
+            // ...
+        });
+        //facebook
+    }
+
     useEffect(()=>{
         document.title="InYourLife-登入"
     })
     
+    useEffect(()=>{
+        const search=async()=>{
+            const querySnapshot = await getDocs(collection(db, "user"));
+            querySnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              console.log(doc.id, " => ", doc.data());
+              setcurrentEmail((pre)=>[...pre,doc.data().emailAddress])
+            });
+
+        }
+        search();
+
+    },[])
 
     return(
         <div className="main">
@@ -75,8 +141,7 @@ const SignIn =()=>{
                             <hr/>或<hr/>
                         </div>
                         <div className="useGooglesignin">
-                            <div className="useGooglesignin__item">使用facebook帳號登入</div>
-                            <div className="useGooglesignin__item">忘記密碼</div>
+                            <div className="useGooglesignin__item" onClick={facebookSignin}>使用facebook帳號登入</div>
                         </div>
                     </div>
                     

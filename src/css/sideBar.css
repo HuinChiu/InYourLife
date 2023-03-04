@@ -159,6 +159,7 @@
 
     .padSideBar__hamburger{
         display: block;
+        /* padding-right: 5px; */
         
     }
     .padotherLogo__signout{
