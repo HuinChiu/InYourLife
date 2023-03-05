@@ -12,8 +12,7 @@ import {FiMessageSquare} from "react-icons/fi"
 import { AiFillSetting} from "react-icons/ai"
 
 function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
-    // fullName,userName,followers,following,memberId,personImg,setPersonImg
-    // const {username} =useParams();
+
     const [setting,setSetting]=useState(false)
     //點擊貼文true點擊收藏false
     const [selectOption,setSelectOption]=useState("post")
@@ -22,6 +21,8 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     const [fullCollect,setFullCollect]=useState([])
     //是否顯示個人頁面？
     const [clickShowAllcomment,setclickShowAllComment]=useState(false)
+    //計算個人貼文數
+    const [postCount,setPostCount]=useState(0)
     
     const clickstyle ={
         borderTop: "1px solid black"
@@ -68,6 +69,8 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                 querySnapshot.forEach((doc) => {
                     const data=(doc.data())
                     setSelectData((pre)=>[...pre,data])
+                    setPostCount(pre=>pre+1)
+
                 });   
                 });
             }
@@ -95,6 +98,10 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
         for(let i of collectData){
             const docRef=doc(db, "posts", i)
             const docData=onSnapshot(docRef, (doc) => {
+                console.log("collectData",doc.data())
+                if(doc.data()===undefined){
+                    return false
+                }
                 setFullCollect(pre=>[...pre,doc.data()])
             })
         }
@@ -137,7 +144,7 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                     
                 </div>
                 <div className="personInfomation__item">
-                    <div className="personInfomation__item-num"><div className="post_num">0</div>貼文</div>
+                    <div className="personInfomation__item-num"><div className="post_num">{postCount}</div>貼文</div>
                     <div className="personInfomation__followers-num"><div className="post_num">{memberData.followers.length}</div>粉絲</div>
                     <div className="personInfomation__following-num"><div className="post_num">{memberData.following.length}</div>追蹤中</div>
                 </div>
@@ -167,7 +174,7 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
             {selectOption=="post"?selectData.map((data,index)=>{
                 return(
                     <div className="person_post__item" key={index}>
-                        <div className="item__img"  onClick={showContent} style={{backgroundImage:`url(${data.images})`}}>
+                        <div className="item__img"  style={{backgroundImage:`url(${data.images[0]})`}}>
                         <div className="item__status">
                             <div className="item__status_heart"><FaHeart></FaHeart>{data.like.length}</div>
                             <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>{data.comment.length}</div>
@@ -176,10 +183,10 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                     </div>
                 )
             }):null}
-            {selectOption=="collect"?fullCollect.map((data,index)=>{
+            {selectOption=="collect"&&fullCollect?fullCollect.map((data,index)=>{
                 return(
                     <div className="person_post__item" key={index}>
-                        <div className="item__img"  onClick={showContent} style={{backgroundImage:`url(${data.images})`}}>
+                        <div className="item__img"  style={{backgroundImage:`url(${data.images[0]})`}}>
                         <div className="item__status">
                             <div className="item__status_heart"><FaHeart></FaHeart>{data.like.length}</div>
                             <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>{data.comment.length}</div>

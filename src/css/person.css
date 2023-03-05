@@ -120,7 +120,7 @@
     height: 200px;
     /* background-color: black; */
     border: 1px solid lightgray;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .item__status{

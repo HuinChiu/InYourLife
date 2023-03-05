@@ -390,7 +390,7 @@ hr{
     }
     .otherLogo__group{
         position: fixed;
-        z-index: 5;
+        z-index: 6;
         bottom: 0;
         width: 100%;
         display: flex;
@@ -536,6 +536,23 @@ hr{
     margin: 5px;
 }
 /* 照片區 */
+.container__follow{
+    padding: 5px 10px;
+    background-color: #41b6e6;
+    color: #FFF;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+.container__follow__true{
+    padding: 5px 10px;
+    background-color: #FFF;
+    color: #41b6e6;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid #41b6e6;
+    cursor: pointer;
+}
 .container__name__personImagebox{
     width: 100%;
     display: flex;
@@ -562,6 +579,22 @@ hr{
     height: 500px;
     object-fit: contain;
     display: block;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-transition: all 1s linear;
+    transition: all 1s linear;
+}
+@keyframes post__main__picture {
+    0% {
+        transform: translateX(0)
+    }
+    50% {
+        transform: translateX(-25%)
+    }
+    100% {
+        transform: translateX(-50%)
+    }
 }
 .picture__like{
     position: absolute;
@@ -576,11 +609,16 @@ hr{
     position: absolute;
     top:50%;
     left:10px;
+    z-index: 5;
+    cursor: pointer;
 }
+
 .picture__Rightbtn{
     position: absolute;
     top:50%;
     right:10px;
+    z-index: 5;
+    cursor: pointer;
 }
 .picture__dot{
     width: 100%;
@@ -596,15 +634,20 @@ hr{
     height: 10px;
     border-radius: 50%;
     margin: 5px;
-    background-color: aqua;
+    background-color: rgba(255, 255, 255,0.6);
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
+
 .container__icon{
     display: flex;
     justify-content: space-between;
 
 }
 .container__content{
-    margin: 5px 0px;
+    border-bottom: 1px solid lightgray;
+    padding: 5px 0px;
+    margin-bottom: 5px;
 }
 /* 愛心 傳送 收藏icon */
 .container__icon__left{
@@ -837,7 +880,7 @@ hr{
     height: 200px;
     /* background-color: black; */
     border: 1px solid lightgray;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .item__status{
@@ -1053,9 +1096,11 @@ hr{
 .preViewImg{
     width: 60%;
     height: 100%;
-    background-size:cover;
+    background-size:contain;
     border-radius: 0 0 0 10px;
     background-position: center;
+    background-repeat: no-repeat;
+    border-right: 1px solid lightgray;
 }
 .perviewImg__item{
     display: block;
@@ -1094,7 +1139,7 @@ hr{
     width: 50px;
     height: 50px;
     margin: 10px;
-    background-size:cover;
+    background-size:contain;
     border-radius: 50%;
     background-position: center;
     border: 1px solid black;
@@ -1105,7 +1150,6 @@ hr{
 .perViewPost__input{
     outline-style: none ;
     border: 0px;
-    border-bottom: 1px solid lightgray;
     padding: 20px;
     font-size: 16px;
     width: 85%;
@@ -1121,17 +1165,33 @@ hr{
     .newPage__box{
         width: 80%;
         margin: auto;
-        height: 50%;
+        height: 70%;
     }
 
-    .perViewPost__member__img{
-        width: 30px;
-        height: 30px;
-        margin: 0px;
+    .newPage__newPost {
+        flex-direction: column;
+    }
+    .preViewImg{
+        width: 100%;
+        border-right: 0px;
+        border-bottom: 1px solid lightgray;
+        border-radius: 0px;
     }
 }
-@media (max-width:360px) {
-
+@media (max-width:412px) {
+.newPage__box{
+    height: 80%;
+    width: 90%;
+}
+.newPage__newPost {
+    flex-direction: column;
+}
+.preViewImg{
+    width: 100%;
+    border-right: 0px;
+    border-bottom: 1px solid lightgray;
+    border-radius: 0px;
+}
 }
 /*!***********************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/setting.css ***!
@@ -1203,7 +1263,7 @@ hr{
     position: fixed;
     top:0;
     left: 0;
-    z-index: 5;
+    z-index: 6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1222,11 +1282,13 @@ hr{
     height: 80%;
     border-radius: 10px;
     display: flex;
+    z-index: 6;
 }
 .showAllcommentContainer__box__Image{
     width: 60%;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     border-radius: 10px 0px 0px 10px;
 }
 .showAllcommentContainer__box__information{
@@ -1266,8 +1328,6 @@ hr{
 .showAllcommentContainer__box__information__title{
     font-weight: 700;
     padding: 5px;
-    border-bottom: 1px solid lightgray;
-    background-color: antiquewhite;
 }
 .caption__member{
     display: flex;
@@ -1348,6 +1408,38 @@ hr{
     align-items: center; 
 }
 
+@media (max-width:1200px) {
+.showAllcommentContainer__box{
+    width: 80%;
+}
+
+}
+
+@media (max-width:768px) {
+.showAllcommentContainer__box{
+    flex-direction: column;
+}
+.showAllcommentContainer__box__Image{
+    height: 50%;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+.showAllcommentContainer__box__information{
+    height: 40%;
+    width: 100%;
+}
+.showAllcommentContainer__box__information{
+    height: 50%;
+}
+}
+
+@media (max-width:412px) {
+    .showAllcommentContainer__box{
+        width: 100%;
+        border-radius: 0px;
+    }
+
+}
 /*!***************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/deleteAlert.css ***!
   \***************************************************************************/
@@ -1375,7 +1467,7 @@ hr{
 }
 .delete__title{
     width: 100%;
-    height: 100px;
+    height: 150px;
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: center;
@@ -1387,7 +1479,7 @@ hr{
 }
 .delete__selec__delete{
     width: 50%;
-    height: 50px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1403,7 +1495,7 @@ hr{
 }
 .delete__selec__cancel{
     width: 50%;
-    height: 50px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1417,3 +1509,32 @@ hr{
     background-color: #41b6e6;
     border-radius: 0px 0px 10p 0px;
 }
+
+@media (max-width:1200px) {
+    /* .delete__container{
+        width: 60%;
+        height: 30%;
+    } */
+
+}
+
+@media (max-width:768px) {
+    .delete__container{
+        width: 60%;
+        height: 20%;
+    }
+}
+
+@media (max-width:412px) {
+    .delete__container{
+        width: 80%;
+        height: 20%;
+    }
+    .delete__selec__delete{
+        height: 50px;
+    }
+    .delete__selec__cancel{
+        height: 50px;
+    }
+}
+

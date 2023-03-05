@@ -126,7 +126,7 @@
     }
     .otherLogo__group{
         position: fixed;
-        z-index: 5;
+        z-index: 6;
         bottom: 0;
         width: 100%;
         display: flex;
