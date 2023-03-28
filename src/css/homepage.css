@@ -23,7 +23,7 @@
 }
 
 
-@media (max-width:412px) {
+@media (max-width:480px) {
     .container:nth-last-child(1){
         margin-bottom: 20px;
     }

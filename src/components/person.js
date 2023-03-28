@@ -1,19 +1,18 @@
-import { useEffect,useRef,useState } from "react";
+import { useEffect,useState } from "react";
 import { useParams } from "react-router-dom"; 
 import { db,auth,storage } from "../../firebase";
 import { doc,setDoc,getDocs,collection, updateDoc,where,query,onSnapshot, orderBy} from "firebase/firestore";
 import { ref, uploadBytesResumable,getDownloadURL  } from "firebase/storage";
-import Setting from "./setting";
-import ShowAllcomment from "./homepage/showTotalComment";
+import Setting from "./action/setting";
+import ShowAllcomment from "./action/showTotalComment";
 import {BsGrid3X3} from "react-icons/bs"
 import {BiBookmark} from "react-icons/bi"
 import {FaHeart} from "react-icons/fa"
 import {FiMessageSquare} from "react-icons/fi"
 import { AiFillSetting} from "react-icons/ai"
 
-function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
+function PersonPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
 
-    const [setting,setSetting]=useState(false)
     //點擊貼文true點擊收藏false
     const [selectOption,setSelectOption]=useState("post")
     const [selectData,setSelectData]=useState([])
@@ -23,10 +22,17 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     const [clickShowAllcomment,setclickShowAllComment]=useState(false)
     //計算個人貼文數
     const [postCount,setPostCount]=useState(0)
+    //計算留言總數
+    const [allComment,setAllComment]=useState([])
+    const [commentNum,setCommentNum]=useState(0)
     
     const clickstyle ={
         borderTop: "1px solid black"
       };
+
+    useEffect(()=>{
+        document.title="InYourLife-登入"
+    })
 
     //點擊頭像上傳新的照片
     async function handleUpload(e){
@@ -66,46 +72,33 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
             const q = query(collection(db, "posts"), where("uid", "==", memberData.userId),orderBy("timestamp","desc"));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 setSelectData([])
-                querySnapshot.forEach((doc) => {
+                querySnapshot.forEach((doc,index) => {
+                    //1個文章data
                     const data=(doc.data())
+                    console.log("我person外面",data) 
                     setSelectData((pre)=>[...pre,data])
                     setPostCount(pre=>pre+1)
-
                 });   
                 });
             }
-
+        setCollectData(memberData.collect)
         },[])
-
-    useEffect(()=>{
-        const findCollect=async()=>{
-            const unsub = await onSnapshot(doc(db, "user", memberId), (doc) => {
-                let collectList=doc.data().collect; //獲取user collect值
-                setCollectData(collectList)
-            });
-
-        }
-        //找出收藏文章
-
-        findCollect();
-
-    },[])
-
 
     const handleSelect =async()=>{
         setCollectData([])
-        let result=[]
         for(let i of collectData){
             const docRef=doc(db, "posts", i)
             const docData=onSnapshot(docRef, (doc) => {
                 console.log("collectData",doc.data())
-                if(doc.data()===undefined){
+                let querydata=doc.data()
+                if(querydata===undefined){
                     return false
                 }
-                setFullCollect(pre=>[...pre,doc.data()])
+                setFullCollect(pre=>[...pre,querydata])
             })
         }
                 setSelectOption("collect")
+        
     }
 
 
@@ -117,6 +110,7 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     const showContent=()=>{
         setclickShowAllComment(true)
     }
+
 
         
     return(
@@ -177,7 +171,9 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                         <div className="item__img"  style={{backgroundImage:`url(${data.images[0]})`}}>
                         <div className="item__status">
                             <div className="item__status_heart"><FaHeart></FaHeart>{data.like.length}</div>
-                            <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>{data.comment.length}</div>
+                            <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>
+                            {data.commentCount}
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -189,7 +185,9 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
                         <div className="item__img"  style={{backgroundImage:`url(${data.images[0]})`}}>
                         <div className="item__status">
                             <div className="item__status_heart"><FaHeart></FaHeart>{data.like.length}</div>
-                            <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>{data.comment.length}</div>
+                            <div className="item__status_msg"><FiMessageSquare ></FiMessageSquare>
+                            {data.commentCount}
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -204,4 +202,4 @@ function PersionPage({memberData,personImg,setPersonImg,memberId,clickSetting}){
     )
 }
 
-export default PersionPage;
+export default PersonPage;

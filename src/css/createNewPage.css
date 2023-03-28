@@ -107,12 +107,14 @@
     position: absolute;
     top: 50%;
     color:rgb(244, 255, 255,0.6);
+    cursor: pointer;
 }
 .newPage_leftBtn{
     position: absolute;
     top: 50%;
     right: 43%;
     color:rgb(244, 255, 255,0.6);
+    cursor: pointer;
 }
 /* 建立貼文box */
 .newPage__newPost{
@@ -143,11 +145,18 @@
 .perViewPost__input{
     outline-style: none ;
     border: 0px;
-    padding: 20px;
+    padding: 10px;
     font-size: 16px;
     width: 85%;
-    height: 50%;
+    height: 80%;
     resize: none
+}
+.newPage__container__loading{
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    margin: 100px;
+    z-index: 7;
 }
 @media (max-width:1280px) {
     .perViewPost__input{
@@ -160,6 +169,11 @@
         margin: auto;
         height: 70%;
     }
+    .newPage__container__loading{
+     width: 80%;
+     height: 70%;   
+     margin: 150px;
+    }
 
     .newPage__newPost {
         flex-direction: column;
@@ -170,12 +184,24 @@
         border-bottom: 1px solid lightgray;
         border-radius: 0px;
     }
+    .perViewPost{
+        width: 100%;
+    }
+    .perViewPost__input{
+        width: 95%;
+        height: 50%;
+    }
 }
-@media (max-width:412px) {
+@media (max-width:480px) {
 .newPage__box{
     height: 80%;
-    width: 90%;
+    width: 100%;
 }
+.newPage__container__loading{
+    width: 100%;
+    height: 85%;   
+    margin: 90px;
+   }
 .newPage__newPost {
     flex-direction: column;
 }
@@ -184,5 +210,8 @@
     border-right: 0px;
     border-bottom: 1px solid lightgray;
     border-radius: 0px;
+}
+.perViewPost{
+    width: 100%;
 }
 }

@@ -46,6 +46,7 @@
     color: #FFF;
     border-radius: 5px;
     text-align: center;
+    cursor: pointer;
 }
 .setting__closebtn{
     position: absolute;

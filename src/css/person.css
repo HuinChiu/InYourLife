@@ -203,7 +203,7 @@
     }
 }
 
-@media (max-width:412px) {
+@media (max-width:480px) {
     .personDocument{
         width: 100%;
         margin: auto;

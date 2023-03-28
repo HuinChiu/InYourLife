@@ -126,7 +126,7 @@
     }
     .otherLogo__group{
         position: fixed;
-        z-index: 6;
+        z-index: 5;
         bottom: 0;
         width: 100%;
         display: flex;
@@ -159,6 +159,7 @@
 
     .padSideBar__hamburger{
         display: block;
+        padding: 5px;
         /* padding-right: 5px; */
         
     }
@@ -176,8 +177,11 @@
         box-shadow: 1px 1px 8px #888888;
         text-align: center;
     }
+    .padotherLogo__item{
+        padding: 5px;
+    }
 }
-@media (max-width:412px) {
+@media (max-width:480px) {
     .mainLogo{
         padding: 0px;
     }
