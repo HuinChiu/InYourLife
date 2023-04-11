@@ -17,11 +17,11 @@ To get started, follow the installation instructions in the README and start sha
 * Set username, full name, self-introduction and change personal image using useState to store input text and updating to Firestore
 * View all personal posts and collected posts using Firestore
  
-### creat new page.
+### Creat new page
 * Create a new post by selecting one or more photos and previewing them, and then using Firestore to store the post's text and image URL
 
 
-### Chat RoomChat Room.
+### Chat Room
 * Search for a user by typing their full name.
 * Select a user to send a message in real-time using Firestore.
 * Receive real-time messages from other users.
