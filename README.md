@@ -66,12 +66,16 @@ To get started with this application, follow these steps:
 This project would not have been possible without the help and support of many people. I would like to thank the following:
 [Chao-Wei- Peng](https://github.com/cwpeng) for his guidance and mentorship throughout the development process.
 
+I'm very grateful I have this chance to challeng myself, and do this project, this is unbeleable in the past, hope I can keep going to next stage.
+
 ## Contact
 If you have any questions, comments, or suggestions for this project, please feel free to contact me:
 
-Email: hana840101@gmail.com
-GitHub: [HuinChiu](https://github.com/HuinChiu)
-I welcome any feedback or contributions, and we look forward to hearing from you!
+* Email: hana840101@gmail.com
+* GitHub: [HuinChiu](https://github.com/HuinChiu)
+I welcome any feedback or contributions, and I look forward to hearing from you!
 
 ## Conclusion
-That's the basic structure for a README file. Of course, you can customize it to fit your needs, but make sure that the most important information is easy to find and understand.
+Thank you for taking the time to explore this project! While the current version is functional, I have plans to add additional features and enhancements in the future. Some of the ideas I'm considering include implementing a post limit and adding a notification system.
+
+Thank you again for your interest in this project!
