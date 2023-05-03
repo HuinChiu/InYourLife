@@ -6,11 +6,14 @@ This project is a clone of Instagram that allows users to share photos and posts
 To get started, follow the installation instructions in the README and start sharing your photos and posts with others!
 
 ## Demo
-### Infinite scroll and create new post
-https://recordit.co/lfs9aYn0HG
+### Infinite scroll
+![homepage](http://g.recordit.co/r4IHUyXNfe.gif)
+
+### create new post
+![homepage](http://g.recordit.co/slJW062n3I.gif)
 
 ### Real-time chatroom
-https://recordit.co/EcPePWYjM5
+![chatroom](http://g.recordit.co/EcPePWYjM5.gif)
 
 ## Features
 ### Home Page
