@@ -120,7 +120,7 @@
     height: 200px;
     /* background-color: black; */
     border: 1px solid lightgray;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .item__status{
@@ -203,7 +203,7 @@
     }
 }
 
-@media (max-width:412px) {
+@media (max-width:480px) {
     .personDocument{
         width: 100%;
         margin: auto;

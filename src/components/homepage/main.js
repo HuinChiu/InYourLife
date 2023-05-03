@@ -1,58 +1,77 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { db } from "../../../firebase";
-import { doc,collection,getDocs,onSnapshot, orderBy, query, Timestamp,limit } from "firebase/firestore";
-import TopBar from "./topBar";
+import {
+  doc,
+  collection,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+  Timestamp,
+  limit,
+  startAfter,
+} from "firebase/firestore";
+import TopBar from "../navigate/topBar";
 import Container from "./container";
 import { FaPooStorm } from "react-icons/fa";
 
-function Main({memberData,memberId}){
-    const [posts,setPosts]=useState([])
+function Main({ memberData, memberId }) {
+  const initState = {
+    post: posts,
+  };
 
+  const [posts, setPosts] = useState([]);
+  const [limitNum, setLimitNum] = useState(3);
 
-    // useEffect(()=>{
-        const getPostData=async ()=>{
-            const q =query(collection(db, "posts"),orderBy("timestamp","desc"))
-            onSnapshot(q,(querySnapshot) => { 
-                const postsData = []; 
-                querySnapshot.forEach((doc) => {
-                    postsData.push(
-                        {id:doc.id,
-                        post:doc.data()
-                        });
-                    });
-                setPosts(postsData); 
-                })
-        }
-        getPostData();
+  const getPostData = () => {
+    const q = query(
+      collection(db, "posts"),
+      orderBy("timestamp", "desc"),
+      limit(limitNum)
+    );
+    onSnapshot(q, (querySnapshot) => {
+      const postsData = [];
+      querySnapshot.forEach((doc) => {
+        postsData.push({ id: doc.id, post: doc.data() });
+      });
+      setPosts(postsData);
+      setLimitNum((pre) => pre + 3);
+    });
+  };
+  useEffect(() => {
+    getPostData();
+  }, []);
 
-            // const snapshot=()=>{
-            //     const unsubscribe = onSnapshot(collection(db, 'user'), (querySnapshot) => {
-            //         querySnapshot.forEach((doc) => {
-            //         console.log("querySnapshot",doc.data())
-            //         });
-            //     });
-            // }
-            // snapshot();
-    // ;},[])
+  const handleScroll = (e) => {
+    if (
+      window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+      e.target.documentElement.scrollHeight
+    ) {
+      getPostData();
+    }
+  };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [limitNum]);
 
-    return(
-        <div className="main">
-            {/* <TopBar></TopBar> */}
-            {posts.map(({id,post})=>(
-                    <Container 
-                    key={id}
-                    personImg={memberData.personImg}
-                    dataId={id}
-                    memberData={memberData}
-                    memberId={memberId}
-                    post={post}
-                    >
-                    </Container>
-            ))}
-        </div>
-
-    )
+  return (
+    <div className="main">
+      {/* <TopBar></TopBar> */}
+      {posts.map(({ id, post }, index) => (
+        <Container
+          key={index}
+          personImg={memberData.personImg}
+          dataId={id}
+          memberData={memberData}
+          memberId={memberId}
+          post={post}
+        ></Container>
+      ))}
+    </div>
+  );
 }
 
 export default Main;

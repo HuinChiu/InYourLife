@@ -27,7 +27,7 @@
         width: 80px;
     }
 }
-@media(max-width:414px){
+@media(max-width:480px){
     .mainImg{
         display: none;
     }
@@ -180,6 +180,7 @@ hr{
 }
 .useGooglesignin__item{
     padding: 10px;
+    cursor: pointer;
 }
 .signup{
     width: 80%;
