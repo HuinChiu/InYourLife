@@ -1,10 +1,17 @@
 # InYourLife
 
 ## Description
-This project is a clone of Instagram that allows users to share photos and posts with others. Our goal is to provide a simpler, more streamlined experience than the original Instagram. Our clone offers unique features such as [insert specific features here] that set it apart from the competition. While some features may be simple at this time, we plan to continuously improve our clone and add more advanced features in the future.
+This project is a clone of Instagram that allows users to share photos and posts with others. While some features may be simple at this time, we plan to continuously improve our clone and add more advanced features in the future.
 
 To get started, follow the installation instructions in the README and start sharing your photos and posts with others!
- 
+
+## Demo
+### Infinite scroll and create new post
+https://recordit.co/lfs9aYn0HG
+
+### Real-time chatroom
+https://recordit.co/EcPePWYjM5
+
 ## Features
 ### Home Page
 * View all posts from Firebase Firestore
@@ -13,9 +20,12 @@ To get started, follow the installation instructions in the README and start sha
 * Collect and discollect a post using useState to store collect status and updating to Firestore
 * Infinite scroll by observing the window's innerHeight and documentElement.scrollTop, and fetching more data from Firestore when needed
 * Click "see more comments" to view all comments in a popup window using useState to store a "click" boolean value
+
+
 ### person Page
-* Set username, full name, self-introduction and change personal image using useState to store input text and updating to Firestore
 * View all personal posts and collected posts using Firestore
+* Set username, full name, self-introduction and change personal image using useState to store input text and updating to Firestore
+
  
 ### Creat new page
 * Create a new post by selecting one or more photos and previewing them, and then using Firestore to store the post's text and image URL
@@ -60,8 +70,6 @@ To get started with this application, follow these steps:
 9. To send a message to another user, search for their username using the search bar at the top of the screen.
 10. Click on the user's profile, then click the "Send Message" button to open the chat room.
 
-(In addition to these basic steps, you should also provide instructions on how to use any advanced features or functionality in your application, and include any relevant screenshots or visuals to help users better understand how to use the application.)
-
 ## Credits
 This project would not have been possible without the help and support of many people. I would like to thank the following:
 [Chao-Wei- Peng](https://github.com/cwpeng) for his guidance and mentorship throughout the development process.
@@ -69,11 +77,9 @@ This project would not have been possible without the help and support of many p
 I'm very grateful I have this chance to challeng myself, and do this project, this is unbeleable in the past, hope I can keep going to next stage.
 
 ## Contact
-If you have any questions, comments, or suggestions for this project, please feel free to contact me:
-
+Chiu-Hui-Ting
 * Email: hana840101@gmail.com
 * GitHub: [HuinChiu](https://github.com/HuinChiu)
-I welcome any feedback or contributions, and I look forward to hearing from you!
 
 ## Conclusion
 Thank you for taking the time to explore this project! While the current version is functional, I have plans to add additional features and enhancements in the future. Some of the ideas I'm considering include implementing a post limit and adding a notification system.
