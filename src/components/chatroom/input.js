@@ -12,6 +12,7 @@ import { v4 as uuid } from "uuid";
 const Input = ({ selectUserInfo, memberData }) => {
   const [text, setText] = useState("");
   const chatId = selectUserInfo[0];
+  console.log(selectUserInfo, selectUserInfo[0]);
   const userInfo = selectUserInfo[1];
   console.log(chatId);
 

@@ -1,217 +1,236 @@
-.newPage__container{
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    background-color: rgba(0,0,0,0.6);
-    top: 0;
+.newPage__container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
 }
-.newPage__container_close-btn{
-    position: absolute;
-    right:10px;
-    color: #FFF;
-    cursor: pointer;
+.newPage__container_close-btn {
+  position: absolute;
+  right: 10px;
+  color: #fff;
+  cursor: pointer;
 }
-.newPage__box{
-    margin:100px;
-    width: 70%;
-    height: 80%;
-    background-color: #FFF;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
+.newPage__box {
+  margin: 100px;
+  width: 70%;
+  height: 80%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
 }
-.newPage__box_title{
-    width: 100%;
-    text-align: center;
-    padding: 10px 0px;
-    border-bottom: 1px solid lightgray;
-    font-weight: 700;
-    font-size: 16px;
+.newPage__box_title {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid lightgray;
+  font-weight: 700;
+  font-size: 16px;
 }
-.newPage__box_title-group{
-    width: 100%;
-    text-align: center;
-    padding: 10px 0px;
-    border-bottom: 1px solid lightgray;
-    font-weight: 700;
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.newPage__box_title-group {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid lightgray;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.back{
-    padding: 0px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.back {
+  padding: 0px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
-.next{
-    padding: 0px 10px;
-    cursor: pointer;
-    color: #50C1E9;
+.next {
+  padding: 0px 10px;
+  cursor: pointer;
+  color: #50c1e9;
 }
-.next:hover{
-    color: black;
+.next:hover {
+  color: black;
 }
-.newPage__box_putImg{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.newPage__box_putImg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.newPage__box_putImg-icon{
-    width: 40%;
-    text-align: center;
+.newPage__box_putImg-icon {
+  width: 40%;
+  text-align: center;
 }
-.newPage__box_putImg-text{
-    font-size: 20px;
-    font-weight: 400;
+.newPage__box_putImg-text {
+  font-size: 20px;
+  font-weight: 400;
 }
-.newPage__box_putImg-btn{
-    padding: 5px 10px;
-    margin:10px;
-    background-color: rgb(0, 191, 255);
-    color: #FFF;
-    border-radius: 5px;
-    font-weight: 700;
-    cursor: pointer;
+.newPage__box_putImg-btn {
+  padding: 5px 10px;
+  margin: 10px;
+  background-color: rgb(0, 191, 255);
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
 }
 /* 上傳 */
-#uploadPostImg{
-    display: none;
+#uploadPostImg {
+  display: none;
 }
-.preViewImg{
-    width: 60%;
-    height: 100%;
-    background-size:contain;
-    border-radius: 0 0 0 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-right: 1px solid lightgray;
+.preViewImg {
+  width: 60%;
+  height: 100%;
+  background-size: contain;
+  border-radius: 0 0 0 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 1px solid lightgray;
 }
-.perviewImg__item{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio:auto; /* ⏹ a perfect square */
-
+.perviewImg__item {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: auto; /* ⏹ a perfect square */
 }
-.newPage_rightBtn{
-    position: absolute;
-    top: 50%;
-    color:rgb(244, 255, 255,0.6);
-    cursor: pointer;
+.newPage_rightBtn {
+  position: absolute;
+  top: 50%;
+  color: rgb(244, 255, 255, 0.6);
+  cursor: pointer;
 }
-.newPage_leftBtn{
-    position: absolute;
-    top: 50%;
-    right: 43%;
-    color:rgb(244, 255, 255,0.6);
-    cursor: pointer;
+.newPage_leftBtn {
+  position: absolute;
+  top: 50%;
+  right: 43%;
+  color: rgb(244, 255, 255, 0.6);
+  cursor: pointer;
 }
 /* 建立貼文box */
-.newPage__newPost{
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-.perViewPost{
-    width: 40%;
-    height: 100%;
-}
-.perViewPost__member{
-    display: flex;
-    margin: 5px 10px;
-}
-.perViewPost__member__img{
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    background-size:contain;
-    border-radius: 50%;
-    background-position: center;
-    border: 1px solid black;
-}
-.perViewPost__member__username{
-    margin: auto 5px;
-}
-.perViewPost__input{
-    outline-style: none ;
-    border: 0px;
-    padding: 10px;
-    font-size: 16px;
-    width: 85%;
-    height: 80%;
-    resize: none
-}
-.newPage__container__loading{
-    position: absolute;
-    width: 70%;
-    height: 80%;
-    margin: 100px;
-    z-index: 7;
-}
-@media (max-width:1280px) {
-    .perViewPost__input{
-        padding: 10px;
-    }
-}
-@media (max-width:768px) {
-    .newPage__box{
-        width: 80%;
-        margin: auto;
-        height: 70%;
-    }
-    .newPage__container__loading{
-     width: 80%;
-     height: 70%;   
-     margin: 150px;
-    }
-
-    .newPage__newPost {
-        flex-direction: column;
-    }
-    .preViewImg{
-        width: 100%;
-        border-right: 0px;
-        border-bottom: 1px solid lightgray;
-        border-radius: 0px;
-    }
-    .perViewPost{
-        width: 100%;
-    }
-    .perViewPost__input{
-        width: 95%;
-        height: 50%;
-    }
-}
-@media (max-width:480px) {
-.newPage__box{
-    height: 80%;
-    width: 100%;
-}
-.newPage__container__loading{
-    width: 100%;
-    height: 85%;   
-    margin: 90px;
-   }
 .newPage__newPost {
-    flex-direction: column;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
-.preViewImg{
+.perViewPost {
+  width: 40%;
+  height: 100%;
+}
+.perViewPost__member {
+  display: flex;
+  margin: 5px 10px;
+}
+.perViewPost__member__img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  background-size: contain;
+  border-radius: 50%;
+  background-position: center;
+  border: 1px solid black;
+}
+.perViewPost__member__username {
+  margin: auto 5px;
+}
+.perViewPost__input {
+  outline-style: none;
+  border: 0px;
+  padding: 10px;
+  font-size: 16px;
+  width: 90%;
+  height: 75%;
+  resize: none;
+}
+.newPage__container__loading {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  margin: 100px;
+  z-index: 7;
+}
+@media (max-width: 1280px) {
+  .perViewPost__input {
+    padding: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .newPage__box {
+    width: 80%;
+    margin: auto;
+    height: 70%;
+  }
+  .newPage__container__loading {
+    width: 80%;
+    height: 70%;
+    margin: 150px;
+  }
+
+  .newPage__newPost {
+    flex-direction: column;
+  }
+  .preViewImg {
     width: 100%;
     border-right: 0px;
     border-bottom: 1px solid lightgray;
     border-radius: 0px;
-}
-.perViewPost{
+  }
+  .perViewPost {
     width: 100%;
+  }
+  .perViewPost__input {
+    width: 95%;
+    height: 50%;
+  }
+  .newPage_leftBtn {
+    top: 35%;
+    right: 10%;
+    color: rgba(175, 175, 175, 0.885);
+  }
+  .newPage_rightBtn {
+    top: 35%;
+    left: 10%;
+    color: rgba(175, 175, 175, 0.885);
+  }
 }
+@media (max-width: 480px) {
+  .newPage__box {
+    height: 80%;
+    width: 100%;
+  }
+  .newPage__container__loading {
+    width: 100%;
+    height: 85%;
+    margin: 90px;
+  }
+  .newPage__newPost {
+    flex-direction: column;
+  }
+  .preViewImg {
+    width: 100%;
+    border-right: 0px;
+    border-bottom: 1px solid lightgray;
+    border-radius: 0px;
+  }
+  .perViewPost {
+    width: 100%;
+  }
+  .newPage_leftBtn {
+    top: 35%;
+    right: 0%;
+    color: rgba(175, 175, 175, 0.885);
+  }
+  .newPage_rightBtn {
+    top: 35%;
+    left: 0%;
+    color: rgba(175, 175, 175, 0.885);
+  }
 }

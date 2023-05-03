@@ -28,7 +28,6 @@ import { BiChevronLeftCircle } from "react-icons/bi";
 import { BiChevronRightCircle } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { AiOutlineConsoleSql } from "react-icons/ai";
-// import loading from "../../assets/image/loading.gif"
 
 function Container({ post, memberId, dataId, memberData }) {
   //icon style
@@ -83,171 +82,53 @@ function Container({ post, memberId, dataId, memberData }) {
     document.title = "InYourLife-首頁";
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    //確認使用者與發文者是否同一人
+  const renderFirst = async () => {
     post.uid === memberData.userId ? setTheSameUID(true) : setTheSameUID(false);
-    const renderFirst = async () => {
-      //計算使用者按讚人數
-      const postAllLike = post.like;
-      const count = postAllLike.length;
-      if (count > 0) {
-        const first = postAllLike[0];
-        setFirstLikeUserID(first); //找出第一個按讚人名字
-        const q = query(collection(db, "user"), where("userId", "==", first));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          const result = doc.data().username;
-          setFirstLikeUserName(result);
-        });
-      }
-      setLikeCount(count); //紀錄按讚人數
-      //   setUserIsLikeData(postAllLike); //紀錄所有按讚使用者uid
-      //找出使用者是否有在按讚紀錄內
-      for (let i of postAllLike) {
-        if (i === memberData.userId) {
-          //若有在按讚紀錄內設愛心為true
-          setLike(true);
-        }
-      }
-
-      //找出使用者有無追蹤發布者
-      const following = memberData.following;
-      if (following) {
-        if (following.includes(post.uid)) {
-          setFollowing(true);
-        }
-      }
-
-      //獲取發文者頭像圖片
-      const q = query(
-        collection(db, "user"),
-        where("username", "==", post.username)
-      );
+    //計算使用者按讚人數
+    const postAllLike = post.like;
+    const count = postAllLike.length;
+    if (count > 0) {
+      const first = postAllLike[0];
+      setFirstLikeUserID(first); //找出第一個按讚人名字
+      const q = query(collection(db, "user"), where("userId", "==", first));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        const postData = doc.data().personImg;
-        setPosterImg(postData);
+        const result = doc.data().username;
+        setFirstLikeUserName(result);
       });
-      //獲取發文內照片
-      const postImage = post.images;
-      console.log("postImage.length", postImage.length);
-      setToalImgCount(postImage.length);
-
-      //確認使用者是否有追蹤貼文
-      const userFollow = memberData.following;
-      if (userFollow) {
-        if (userFollow.includes(post.uid)) {
-          setFollowing(true);
-        } else {
-          setFollowing(false);
-        }
-      }
-
-      //如果收藏有在使用者清單裡會變true
-      if (memberData.collect.length !== 0) {
-        for (let i = 0; i < memberData.collect.length; i++) {
-          if (memberData.collect[i] === dataId) {
-            setClickMark(true);
-          }
-        }
-      }
-
-      //獲取集合>文檔>集合comment資料
-      const commentList = [];
-      const subColRef = query(
-        collection(db, "posts", dataId, "comment"),
-        orderBy("timestamp", "desc")
-      );
-      const unsub = onSnapshot(subColRef, (querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => {
-          return doc.data();
-        });
-        setAllComment(data);
-        setCommentnum(data.length);
-        setSplitComment(data.slice(-2));
-      });
-      setLoading(false);
-    };
-
-    renderFirst();
-  }, [following, like, setFollowing, clickDelete]);
-
-  // //貼文資料按讚資料
-  useEffect(() => {
-    //確認使用者與發文者是否同一人
-    post.uid == memberData.userId ? setTheSameUID(true) : setTheSameUID(false);
-    const renderFirst = async () => {
-      //計算使用者按讚人數
-      const postAllLike = post.like;
-      console.log("postLikeLength", post.like.length);
-      const count = postAllLike.length;
-      if (count > 0) {
-        const first = postAllLike[0];
-        setFirstLikeUserID(first); //找出第一個按讚人名字
-        const q = query(collection(db, "user"), where("userId", "==", first));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const result = doc.data().username;
-            setFirstLikeUserName(result);
-          });
-        });
-      }
-      setLikeCount(count); //紀錄按讚人數
-      setUserIsLikeData(postAllLike); //紀錄所有按讚使用者uid
-      //找出使用者是否有在按讚紀錄內
-      for (let i of postAllLike) {
-        if (i == memberData.userId) {
-          //若有在按讚紀錄內設愛心為true
-          setLike(true);
-        }
-      }
-
-      //找出使用者有無追蹤發布者
-      const queryfolloweing = query(
-        collection(db, "user"),
-        where("uid", "==", memberData.userId)
-      );
-      const unsubscribefollowing = onSnapshot(
-        queryfolloweing,
-        (querySnapshot) => {
-          if (querySnapshot) {
-            querySnapshot.forEach((doc) => {
-              const following = doc.data().following;
-              if (following) {
-                if (following.includes(post.uid)) {
-                  setFollowing(true);
-                }
-              }
-            });
-          }
-        }
-      );
-
-      //獲取發文者頭像圖片
-      const q = query(
-        collection(db, "user"),
-        where("username", "==", post.username)
-      );
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        if (querySnapshot) {
-          querySnapshot.forEach((doc) => {
-            const postData = doc.data().personImg;
-            setPosterImg(postData);
-          });
-        }
-      });
-    };
-
-    renderFirst();
-
-    //獲取發文內照片
-    async function getDocument() {
-      const postImage = post.images;
-      console.log("postImage.length", postImage.length);
-      setToalImgCount(postImage.length);
     }
-    getDocument();
+    setLikeCount(count); //紀錄按讚人數
+    setUserIsLikeData(postAllLike); //紀錄所有按讚使用者uid
+    //找出使用者是否有在按讚紀錄內
+    for (let i of postAllLike) {
+      if (i === memberData.userId) {
+        //若有在按讚紀錄內設愛心為true
+        setLike(true);
+      }
+    }
+
+    //找出使用者有無追蹤發布者
+    const following = memberData.following;
+    if (following) {
+      if (following.includes(post.uid)) {
+        setFollowing(true);
+      }
+    }
+
+    //獲取發文者頭像圖片
+    const q = query(
+      collection(db, "user"),
+      where("username", "==", post.username)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const postData = doc.data().personImg;
+      setPosterImg(postData);
+    });
+    //獲取發文內照片
+    const postImage = post.images;
+    console.log("postImage.length", postImage.length);
+    setToalImgCount(postImage.length);
 
     //確認使用者是否有追蹤貼文
     const userFollow = memberData.following;
@@ -258,30 +139,19 @@ function Container({ post, memberId, dataId, memberData }) {
         setFollowing(false);
       }
     }
-
-    //獲取發文者頭像圖片
-    const q = query(
-      collection(db, "user"),
-      where("username", "==", post.username)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      if (querySnapshot) {
-        querySnapshot.forEach((doc) => {
-          const postData = doc.data().personImg;
-          setPosterImg(postData);
-        });
-      }
-    });
-
-    //如果收藏有在使用者清單裡會變true
-    console.log("memberData.collect.length", memberData.collect.length);
-    if (memberData.collect.length !== 0) {
-      for (let i = 0; i < memberData.collect.length; i++) {
-        if (memberData.collect[i] === dataId) {
-          setClickMark(true);
+    if (memberData) {
+      console.log("memberData, useEffect", memberData.collect);
+      if (memberData.collect) {
+        if (memberData.collect.length !== 0) {
+          for (let i = 0; i < memberData.collect.length; i++) {
+            if (memberData.collect[i] === dataId) {
+              setClickMark(true);
+            }
+          }
         }
       }
     }
+    // };
 
     //獲取集合>文檔>集合comment資料
     const commentList = [];
@@ -294,12 +164,110 @@ function Container({ post, memberId, dataId, memberData }) {
         return doc.data();
       });
       setAllComment(data);
-      console.log("commentdata", data);
-      console.log("commentdata", data.length);
+      console.log("data", data.length);
       setCommentnum(data.length);
       setSplitComment(data.slice(-2));
     });
-  }, [memberData, following, like, setFollowing, clickDelete]);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    //確認使用者與發文者是否同一人
+    // post.uid === memberData.userId ? setTheSameUID(true) : setTheSameUID(false);
+    // const renderFirst = async () => {
+    //   //計算使用者按讚人數
+    //   const postAllLike = post.like;
+    //   const count = postAllLike.length;
+    //   if (count > 0) {
+    //     const first = postAllLike[0];
+    //     setFirstLikeUserID(first); //找出第一個按讚人名字
+    //     const q = query(collection(db, "user"), where("userId", "==", first));
+    //     const querySnapshot = await getDocs(q);
+    //     querySnapshot.forEach((doc) => {
+    //       const result = doc.data().username;
+    //       setFirstLikeUserName(result);
+    //     });
+    //   }
+    //   setLikeCount(count); //紀錄按讚人數
+    //   setUserIsLikeData(postAllLike); //紀錄所有按讚使用者uid
+    //   //找出使用者是否有在按讚紀錄內
+    //   for (let i of postAllLike) {
+    //     if (i === memberData.userId) {
+    //       //若有在按讚紀錄內設愛心為true
+    //       setLike(true);
+    //     }
+    //   }
+
+    //   //找出使用者有無追蹤發布者
+    //   const following = memberData.following;
+    //   if (following) {
+    //     if (following.includes(post.uid)) {
+    //       setFollowing(true);
+    //     }
+    //   }
+
+    //   //獲取發文者頭像圖片
+    //   const q = query(
+    //     collection(db, "user"),
+    //     where("username", "==", post.username)
+    //   );
+    //   const querySnapshot = await getDocs(q);
+    //   querySnapshot.forEach((doc) => {
+    //     const postData = doc.data().personImg;
+    //     setPosterImg(postData);
+    //   });
+    //   //獲取發文內照片
+    //   const postImage = post.images;
+    //   console.log("postImage.length", postImage.length);
+    //   setToalImgCount(postImage.length);
+
+    //   //確認使用者是否有追蹤貼文
+    //   const userFollow = memberData.following;
+    //   if (userFollow) {
+    //     if (userFollow.includes(post.uid)) {
+    //       setFollowing(true);
+    //     } else {
+    //       setFollowing(false);
+    //     }
+    //   }
+    //   if (memberData) {
+    //     console.log("memberData, useEffect", memberData.collect);
+    //     if (memberData.collect) {
+    //       if (memberData.collect.length !== 0) {
+    //         for (let i = 0; i < memberData.collect.length; i++) {
+    //           if (memberData.collect[i] === dataId) {
+    //             setClickMark(true);
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // };
+
+    //   //獲取集合>文檔>集合comment資料
+    //   const commentList = [];
+    //   const subColRef = query(
+    //     collection(db, "posts", dataId, "comment"),
+    //     orderBy("timestamp", "desc")
+    //   );
+    //   const unsub = onSnapshot(subColRef, (querySnapshot) => {
+    //     const data = querySnapshot.docs.map((doc) => {
+    //       return doc.data();
+    //     });
+    //     setAllComment(data);
+    //     console.log("data", data.length);
+    //     setCommentnum(data.length);
+    //     setSplitComment(data.slice(-2));
+    //   });
+    //   setLoading(false);
+    // };
+    renderFirst();
+  }, []);
+
+  useEffect(() => {
+    renderFirst();
+  }, [like, loading, memberData]);
 
   // 如果是like:false點擊改為true
   const handleLike = async () => {

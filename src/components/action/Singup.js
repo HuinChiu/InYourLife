@@ -14,7 +14,12 @@ import {
   where,
   onSnapshot,
 } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  FacebookAuthProvider,
+  signInWithPopup,
+  getAuth,
+} from "firebase/auth";
 
 const SignUp = () => {
   // const [signinState,setSigninSatate]=useState(true);
@@ -32,7 +37,6 @@ const SignUp = () => {
     const q = query(collection(db, "user"), where("username", "==", username));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
       if (doc.exists()) {
         setUsernameWarning("使用者名稱已存在，請重新輸入");
@@ -77,6 +81,48 @@ const SignUp = () => {
           setPasswordWarning("密碼至少六位數，請重新輸入");
           setPassword("");
         }
+      });
+  }
+  async function facebookSignin() {
+    //創建 Facebook 提供者對象的實例
+    const provider = new FacebookAuthProvider();
+    const auth = getAuth();
+    auth.languageCode = "it";
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        let useremail = user.email;
+
+        if (currentEmail.includes(useremail)) {
+          navigate("/");
+        } else {
+          const data = {
+            dataCreates: serverTimestamp(),
+            emailAddress: user.email,
+            followers: [],
+            following: [],
+            fullName: user.displayName,
+            introduction: "",
+            userId: user.uid,
+            username: user.displayName,
+            collect: [],
+            personImg: user.photoURL,
+          };
+          console.log(data);
+          addDoc(collection(db, "user"), data)
+            .then((data) => {})
+            .catch((error) => {
+              console.log("輸入資料庫錯誤", error);
+            });
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("facebook登入錯誤", errorMessage);
+        const credential = FacebookAuthProvider.credentialFromError(error);
       });
   }
 
@@ -151,7 +197,9 @@ const SignUp = () => {
               <hr />或<hr />
             </div>
             <div className="useGooglesignin">
-              <div className="useGooglesignin__item">使用facebook帳號登入</div>
+              <div className="useGooglesignin__item" onClick={facebookSignin}>
+                使用facebook帳號登入
+              </div>
             </div>
           </div>
 

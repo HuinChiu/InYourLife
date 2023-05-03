@@ -22,25 +22,13 @@ function ChatRoom({ memberData }) {
   const [chats, setChats] = useState([]);
   const [selectUserInfo, setSelectUserInfo] = useState([]);
 
-  // //傳送訊息給對方
-  // const sendMessage = async () => {
-  //   console.log(chatMsg);
-  //   const docRef = await addDoc(collection(db, "messages"), {
-  //     uid: memberData.userId,
-  //     userImg: memberData.personImg,
-  //     message: message,
-  //     acceptUid: post.uid,
-  //     timestamp: serverTimestamp(),
-  //   });
-  //   console.log("Document written with ID: ", docRef.id);
-  //   showSendMsgBox();
-  //   setChatMsg("");
-  // };
-
   //將訊息至state
   const handleSend = (e) => {
     setChatMsg(e.target.value);
   };
+  useEffect(() => {
+    document.title = "InYourLife-聊天室";
+  });
 
   //搜尋想找的關注者
   const handleKeyPress = async (e) => {
@@ -52,6 +40,7 @@ function ChatRoom({ memberData }) {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const user = doc.data();
+        console.log("setSearchUser", user);
         setSearchUserData(user);
       });
     } catch (error) {
@@ -62,13 +51,17 @@ function ChatRoom({ memberData }) {
   //找到目前有對話使用者
   useEffect(() => {
     const getChats = () => {
+      console.log("memberData", memberData.userId);
       const unsubscribe = onSnapshot(
         doc(db, "userChats", memberData.userId),
         (doc) => {
+          console.log("doc", doc);
+          console.log("doc data", doc.data());
           if (doc == "undefined") {
             setChats([]);
           } else {
             setChats(doc.data());
+            console.log("setChats", doc.data());
           }
         }
       );
@@ -82,6 +75,7 @@ function ChatRoom({ memberData }) {
 
   //選擇想要聊天的使用者顯示聊天室
   const handleSelect = (chat) => {
+    console.log("chat", chat);
     setSelectUserInfo(chat);
   };
   return (
@@ -92,7 +86,7 @@ function ChatRoom({ memberData }) {
           <input
             className="chatRoom__search"
             type="text"
-            placeholder="請輸入使用者名稱..."
+            placeholder="請輸入完整使用者名稱..."
             onChange={handleKeyPress}
             value={searchUser}
           ></input>

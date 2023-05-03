@@ -24,21 +24,16 @@ function SendMsg({ memberId, showSendMsgBox, memberData, post }) {
   const [message, setMessage] = useState("");
   //查找建議傳送訊息人物
   useEffect(() => {
-    console.log("memberData", memberData);
     const getUserFollower = async () => {
       setLoding(true);
       const docRef = doc(db, "user", memberId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data().following);
         for (let i of docSnap.data().following) {
-          console.log(i);
           const q = query(collection(db, "user"), where("userId", "==", i));
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
             setSuggetMember((pre) => [
               ...pre,
               {
@@ -48,9 +43,6 @@ function SendMsg({ memberId, showSendMsgBox, memberData, post }) {
             ]);
           });
         }
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
       }
       setLoding(false);
     };
@@ -59,19 +51,16 @@ function SendMsg({ memberId, showSendMsgBox, memberData, post }) {
   }, []);
   //將選取到的名字放在致input上面
   const handleCLick = (e) => {
-    console.log(e.target.getAttribute("value"));
     setSendPerson(e.target.getAttribute("value"));
   };
   //傳送訊息給對方
   const sendMessage = async () => {
-    console.log(message);
     const docRef = await addDoc(collection(db, "messages"), {
       uid: memberData.userId,
       message: message,
       acceptUid: post.uid,
       timestamp: serverTimestamp(),
     });
-    console.log("Document written with ID: ", docRef.id);
     showSendMsgBox();
   };
 

@@ -107,7 +107,7 @@ function SideBar({
           {/* <div className="otherLogo__item">
                         <BsSearch style={style}/><div className="otherLogo__item__title">搜尋</div>
                     </div> */}
-          <div className="otherLogo__item">
+          <div className="otherLogo__item" onClick={clickChatRoom}>
             <RiMessengerLine style={style} />
             <div className="otherLogo__item__title">訊息</div>
           </div>

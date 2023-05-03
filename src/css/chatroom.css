@@ -86,12 +86,15 @@
 }
 /*chatBox*/
 .chatRoom__box__username {
+  position: fixed;
+  width: 48.7%;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
   border-bottom: 1px solid lightgray;
+  background-color: #fff;
 }
 .chatRoom__box {
   overflow-y: scroll;
@@ -111,6 +114,7 @@
   background-repeat: no-repeat;
 }
 .chatRoom__orther__msg {
+  width: 70%;
   font-size: 16px;
   padding: 10px;
   margin: 10px;
@@ -152,7 +156,103 @@
   word-wrap: break-word;
 }
 .chatRoom__lastMessage {
-  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 80%;
+  height: 20px;
+}
+@media (max-width: 1200px) {
+  .chatRoom {
+    width: 80%;
+  }
+}
+@media (max-width: 768px) {
+  .chatRoom {
+    width: 100%;
+  }
+  .chatRoom__username {
+    width: 60%;
+  }
+  .chatRoom__mine__msg {
+    max-width: 65%;
+  }
+  .chatRoom__orther__msg {
+    max-width: 65%;
+  }
+  .chatRoom__search {
+    padding: 0px 10px;
+    height: 60px;
+  }
+  .chatRoom__info {
+    margin-top: 7.5%;
+  }
+  .chatRoom__main {
+    height: 82%;
+    margin-top: 7.5%;
+  }
+
+  .chatRoom__following__item {
+    padding: 10px;
+  }
+  .chatRoom__box__username {
+    position: fixed;
+    width: 70%;
+    z-index: 5;
+    background-color: #fff;
+  }
+}
+@media (max-width: 480px) {
+  .chatRoom__mine__msg {
+    max-width: 70%;
+  }
+  .chatRoom__orther__msg {
+    max-width: 70%;
+  }
+  .chatRoom__mine__userImg {
+    width: 30px;
+    height: 30px;
+  }
+  .chatRoom__orther__userImg {
+    width: 30px;
+    height: 30px;
+  }
+  .chatRoom__followingImg {
+    width: 30px;
+    height: 30px;
+  }
+  .chatRoom__info {
+    margin-top: 12%;
+  }
+  .chatRoom__main {
+    width: 100%;
+    height: 62%;
+    margin-top: 0px;
+  }
+  .chatRoom__lastMessage {
+    display: none;
+  }
+  .chatRoom__search {
+    height: 40px;
+  }
+  .chatRoom {
+    flex-direction: column;
+  }
+  .chatRoom__info {
+    width: 100%;
+  }
+  .chatRoom__following {
+    overflow-y: scroll;
+  }
+  .chatRoom__box__username {
+    position: absolute;
+    z-index: 5;
+    background-color: #fff;
+    width: 100%;
+  }
+  .chatRoom__userName {
+    display: none;
+  }
+  .chatRoom__msg__box {
+    margin-top: 50px;
+  }
 }

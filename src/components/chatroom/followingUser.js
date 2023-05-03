@@ -5,22 +5,22 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { useRef, useState } from "react";
 import { db } from "../../../firebase";
+import { MdEmojiFoodBeverage } from "react-icons/md";
 const FollowingUser = ({
   user,
   memberData,
   setSearchUserData,
   setSearchUser,
 }) => {
+  console.log("followingUser", user, memberData);
   //選擇對話的用戶，若無聊天過點擊後產生聊天室
-  console.log("dollowingUser", user);
   const handleSelect = async () => {
     const combinedId =
       memberData.userId > user.userId
         ? memberData.userId + user.userId
         : user.userId + memberData.userId;
-
+    console.log("combinedId", combinedId);
     //create userchat
     try {
       const res = await getDoc(doc(db, "chats", combinedId));

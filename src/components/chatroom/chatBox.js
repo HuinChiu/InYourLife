@@ -62,7 +62,7 @@ const ChatBox = ({ selectUserInfo, memberData }) => {
       <div className="chatRoom__box__username">
         {userInfo ? userInfo.userInfo.username : null}
       </div>
-      <div>
+      <div className="chatRoom__msg__box">
         {messages
           ? messages.map((msg) => (
               <Message

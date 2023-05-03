@@ -52,7 +52,10 @@ function Main({ memberData, memberId }) {
     }
   };
 
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [limitNum]);
 
   return (
     <div className="main">

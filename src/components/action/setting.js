@@ -17,7 +17,7 @@ function Setting({ memberData, clickSetting, memberId }) {
   const [introduction, setIntroduction] = useState("");
 
   const [likeData, setLikeData] = useState([]);
-  const userUID=memberData.userId
+  const userUID = memberData.userId;
   //更新會員資料上傳至storage
   async function updateUserData() {
     //更新會員資料庫的資料
@@ -40,26 +40,42 @@ function Setting({ memberData, clickSetting, memberId }) {
       await updateDoc(washingPostRef, {
         username: username,
       });
-
     });
     //更新文章裡comment username
-    const post=collection(db,"posts")
-    const postQ=await getDocs(post)
-    postQ.forEach(async (document)=>{
-      const postRef=doc(db,"posts",document.id);
-      const comment = collection(postRef,"comment");
-      const q = query(comment,where("uid","==",memberData.userId));
-      const querySnapshot=await getDocs(q);
-      querySnapshot.forEach(async(comment)=>{
-        const ref = doc(postRef,"comment",comment.id);
-        await updateDoc(ref,{
-          "username":username
-        })
-    })
-    })
+    const post = collection(db, "posts");
+    const postQ = await getDocs(post);
+    postQ.forEach(async (document) => {
+      const postRef = doc(db, "posts", document.id);
+      const comment = collection(postRef, "comment");
+      const q = query(comment, where("uid", "==", memberData.userId));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (comment) => {
+        const ref = doc(postRef, "comment", comment.id);
+        await updateDoc(ref, {
+          username: username,
+        });
+      });
+    });
 
-    clickSetting()
+    //查詢聊天室裡username
+    const queryChatroomUsername = query(collection(db, "userChats"));
+    const queryChatRoomSnapshot = await getDocs(queryChatroomUsername);
+    queryChatRoomSnapshot.forEach(async (document) => {
+      const data = document.data();
+      let chatId = [];
+      for (let i in data) {
+        chatId.push(i);
+        if (memberData.userId === data[i].userInfo.userId) {
+          const washDocRef = doc(db, "userChats", document.id);
+          //更新聊天室裡username
+          await updateDoc(washDocRef, {
+            [i + ".userInfo.username"]: username,
+          });
+        }
+      }
+    });
 
+    clickSetting();
   }
 
   return (
