@@ -10,7 +10,7 @@ To get started, follow the installation instructions in the README and start sha
 ![homepage](http://g.recordit.co/r4IHUyXNfe.gif)
 
 ### create new post
-![homepage](http://g.recordit.co/slJW062n3I.gif)
+![homepage](http://g.recordit.co/MMBUNcTnIQ.gif)
 
 ### Real-time chatroom
 ![chatroom](http://g.recordit.co/EcPePWYjM5.gif)
