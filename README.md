@@ -1,4 +1,4 @@
-# InYourLife
+# [InYourLife](https://inyourlife-716bb.web.app/)
 
 ## Description
 This project is a clone of Instagram that allows users to share photos and posts with others. While some features may be simple at this time, we plan to continuously improve our clone and add more advanced features in the future.
@@ -54,11 +54,6 @@ To get started, follow the installation instructions in the README and start sha
 * [Github](https://github.com/): Used for version control and collaboration, allowing multiple developers to work on the same codebase simultaneously.
 * [VS Code](https://code.visualstudio.com/): Used as the primary code editor.
 
-## Installation
-This project does not require installation. Simply navigate to the project URL and log in with your credentials to access the application.
-[InYoutLife](https://inyourlife-716bb.web.app/)
-yout can use preset account login or you can register new account.
-
 ## Usage
 To get started with this application, follow these steps:
 
@@ -73,11 +68,6 @@ To get started with this application, follow these steps:
 9. To send a message to another user, search for their username using the search bar at the top of the screen.
 10. Click on the user's profile, then click the "Send Message" button to open the chat room.
 
-## Credits
-This project would not have been possible without the help and support of many people. I would like to thank the following:
-[Chao-Wei- Peng](https://github.com/cwpeng) for his guidance and mentorship throughout the development process.
-
-I'm very grateful I have this chance to challeng myself, and do this project, this is unbeleable in the past, hope I can keep going to next stage.
 
 ## Contact
 Chiu-Hui-Ting
